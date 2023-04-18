@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import MyTitle from "./MyTitle";
 import "./MyTitle.module.css";
