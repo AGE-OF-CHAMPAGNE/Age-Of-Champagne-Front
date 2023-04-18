@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./MyTitle.module.css";
 
 function MyTitle({ children, className }) {
-  return (
-    <div>
-      <h1 className={`${className} ${classes.title}`}>{children}</h1>
-    </div>
-  );
+  return <h1 className={`${className} ${classes.title}`}>{children}</h1>;
 }
 
 MyTitle.defaultProps = {

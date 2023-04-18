@@ -1,3 +1,7 @@
+:root {
+    --color: white
+}
+
 .title::after {
     content: "";
     position: absolute;
@@ -5,9 +9,11 @@
     left: -20px;
     width: 100px;
     height: 1px;
-    background-color: white;
+    background-color: var(--color);
 }
 
 .title {
     position: relative;
+    color: var(--color);
+    font-size: 24px;
 }
