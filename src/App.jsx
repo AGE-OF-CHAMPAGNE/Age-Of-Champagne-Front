@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import MyTitle from "./components/UI/MyTitle/MyTitle";
+import MyButton from "./components/UI/MyButton/MyButton.jsx";
 
 function App() {
   const [b, setB] = useState(true);
@@ -14,16 +15,14 @@ function App() {
   }, [b]);
   return (
     <div>
-      <button
-        type="button"
-        onClick={() => {
-          setB(!b);
-        }}
-      >
-        {" "}
-        COLOR{" "}
-      </button>
       <div className="App">
+        <MyButton
+          onclick={() => {
+            setB(!b);
+          }}
+        >
+          Dark or White
+        </MyButton>
         <MyTitle>Bienvenu</MyTitle>
       </div>
     </div>
