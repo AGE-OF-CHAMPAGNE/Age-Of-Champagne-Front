@@ -1,0 +1,9 @@
+.MyButton {
+    border: 0;
+    border-radius: 4px;
+    height: 45px;
+    width: 166px;
+    font-size: 16px;
+    color: black;
+    text-transform: uppercase;
+}
