@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import MyTitle from "./components/UI/MyTitle/MyTitle";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [b, setB] = useState(true);
+  useEffect(() => {
+    const root = document.documentElement;
+    if (b) {
+      root.style.setProperty("--color", "black");
+    } else {
+      root.style.setProperty("--color", "white");
+    }
+  }, [b]);
   return (
-    <div className="App">
-      It works{" "}
+    <div>
       <button
         type="button"
         onClick={() => {
-          setCount(count + 1);
+          setB(!b);
         }}
       >
-        {count}
+        {" "}
+        COLOR{" "}
       </button>
+      <div className="App">
+        <MyTitle>Bienvenu</MyTitle>
+      </div>
     </div>
   );
 }
