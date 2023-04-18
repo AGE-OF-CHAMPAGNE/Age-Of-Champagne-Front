@@ -1,9 +1,17 @@
+:root {
+    --color: white
+}
+
 .MyButton {
     border: 0;
     border-radius: 4px;
     height: 45px;
     width: 166px;
     font-size: 16px;
-    color: black;
+    color: var(--color);
     text-transform: uppercase;
+}
+
+.MyButton:focus {
+    outline: var(--color) 2px solid;
 }
