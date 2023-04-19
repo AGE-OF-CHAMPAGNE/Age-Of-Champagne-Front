@@ -1,0 +1,36 @@
+.step__circle {
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step__img {
+    width: 57px;
+}
+
+.text {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.step__title {
+    height: 23px;
+    padding: 0 19px 0 45px;
+    border-radius: 4px;
+    width: max-content;
+    text-align: center;
+}
+
+.step__description {
+    color: var(--background-color);
+    background-color: var(--color);
+    border-radius: 4px;
+    padding: 4px 19px 2px 45px;
+    width: 310px;
+}

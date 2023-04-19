@@ -1,7 +1,13 @@
+:root {
+  --color: white;
+  --background-color: black;
+}
+
 #root {
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   min-height: 100vh;
+  background-color: var(--background-color);
 }
