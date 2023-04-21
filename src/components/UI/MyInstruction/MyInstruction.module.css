@@ -1,4 +1,5 @@
 .step__circle {
+    z-index: 2;
     border-radius: 50%;
     width: 72px;
     height: 72px;
@@ -20,6 +21,13 @@
 }
 
 .step__title {
+    z-index: 1;
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
     height: 23px;
     padding: 0 19px 0 45px;
     border-radius: 4px;
@@ -28,8 +36,11 @@
 }
 
 .step__description {
-    color: var(--background-color);
-    background-color: var(--color);
+    transform: translateY(-1px);
+    z-index: 0;
+    border: 1px solid #252525;
+    color: black;
+    background-color: #FFFFFF;
     border-radius: 4px;
     padding: 4px 19px 2px 45px;
     width: 310px;

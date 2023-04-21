@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import MyTitle from "./components/UI/MyTitle/MyTitle";
-import MyButton from "./components/UI/MyButton/MyButton.jsx";
-import MyInstruction from "./components/UI/MyInstruction/MyInstruction.jsx";
+import MyButton from "./components/UI/MyButton/MyButton";
+import MyInstruction from "./components/UI/MyInstruction/MyInstruction";
 
 function App() {
   const [b, setB] = useState(true);

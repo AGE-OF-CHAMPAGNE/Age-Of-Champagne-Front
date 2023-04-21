@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import classes from "./MyButton.module.css";
 
-function MyButton({ onclick, children, className, color }) {
+function MyButton({ onClick, children, className, color }) {
   return (
     <button
       type="button"
       className={`${className} ${classes.MyButton}`}
       style={{ backgroundColor: color }}
-      onClick={onclick}
+      onClick={onClick}
     >
       {children}
     </button>
