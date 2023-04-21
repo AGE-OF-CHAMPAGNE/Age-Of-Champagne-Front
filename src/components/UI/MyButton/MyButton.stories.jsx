@@ -16,18 +16,21 @@ function Template(args) {
 
 export const SignInButton = Template.bind({});
 SignInButton.args = {
+    onClick: () => console.log("INSCRIPTION"),
     children: "S'inscrire",
     onClick: () => {console.log("INSCRIPTION")}
 };
 
 export const BuyButton = Template.bind({});
 BuyButton.args = {
+    onClick: () => console.log("buy"),
     children: "Acheter",
     color: "#4CAF50"
 };
 
 export const MoreAboutButton = Template.bind({});
 MoreAboutButton.args = {
+    onClick: () => console.log("en savoir +"),
     children: "en savoir +",
     color: "#EFE075"
 };
