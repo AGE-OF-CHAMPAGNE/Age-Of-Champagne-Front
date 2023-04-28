@@ -10,7 +10,6 @@ function MySpinningCard({ img }) {
   const [transform, setTransform] = useState({ x: 148.5, y: 101.25 });
   const [cardActive, setCardActive] = useState(false);
   const [transitionTime, setTransitionTime] = useState(0.1);
-  const [displayBackCard, setDisplayBackCard] = useState("d-block");
 
   // the card color
   const color = "#EFE075";
@@ -35,6 +34,7 @@ function MySpinningCard({ img }) {
     "card-img_active": cardImgActive,
     "notification-error": notificationError,
     "colored-zone": coloredZone,
+    "card-container": cardContainer,
   } = classes;
 
   // img-container DOMElement
@@ -139,23 +139,29 @@ function MySpinningCard({ img }) {
     }
   }, [x, prevX]);
 
-  // reconciliation between front and back of the card
-  useEffect(() => {
-    if (cardActive) {
-      setDisplayBackCard("d-none");
-    } else {
-      setTimeout(() => setDisplayBackCard("d-block"), 500);
-    }
-  }, [cardActive]);
-
   // card zoom class
   const cardImgDisabled = {
     transform: `translateX(0%) translateY(0%) rotateY(${angle}deg) rotateZ(${-rotateZ}deg)`,
     transition: `${transitionTime}s transform`,
   };
 
+  // back card zoom class
+  const backCardImgDisabled = {
+    transition: `${transitionTime}s transform`,
+    transform:
+      "translateY(80%) rotateY(0deg) rotateZ(0deg) scale(2) scaleX(-1)",
+    zIndex: angle > 90 || angle < -90 ? 2 : -1,
+  };
+
+  // back card zoom class
+  const backCardImgActive = {
+    transition: `${transitionTime}s transform`,
+    transform: `translateY(0) rotateY(${angle}deg) rotateZ(${-rotateZ}deg) scale(1) scaleX(-1)`,
+    zIndex: angle > 90 || angle < -90 ? 2 : -1,
+  };
+
   return (
-    <>
+    <div className={cardContainer}>
       <div className={card}>
         <div
           ref={imageRef}
@@ -169,7 +175,7 @@ function MySpinningCard({ img }) {
           aria-hidden="true"
         >
           <div
-            className={`${cardSide} ${displayBackCard}`}
+            className={`${cardSide}`}
             style={{
               width: angle === 90 || angle === -90 ? "2px" : "0",
             }}
@@ -183,11 +189,8 @@ function MySpinningCard({ img }) {
             <img className={coloredZone} src={img.src} alt={img.alt} />
           </div>
           <img
-            className={`${cardImg} ${displayBackCard} position-absolute top-0 start-0`}
-            style={{
-              transform: `rotateY(${angle}deg) rotateZ(${-rotateZ}deg) scaleX(-1)`,
-              zIndex: angle > 90 || angle < -90 ? 2 : -1,
-            }}
+            className={`${cardImg} position-absolute top-0 start-0`}
+            style={cardActive ? backCardImgDisabled : backCardImgActive}
             src="/src/assets/img/storybook/image 14.png"
             alt="dos de la carte"
           />
@@ -228,7 +231,7 @@ function MySpinningCard({ img }) {
         </div>
       </div>
       <div
-        className={`${darkBg} ${cardActive ? "d-block" : "d-none"} z-n1`}
+        className={`${darkBg} ${cardActive ? "d-block" : "d-none"}`}
         onClick={() => {
           setCardActive(!cardActive);
           setTransitionTime(0.5);
@@ -247,7 +250,7 @@ function MySpinningCard({ img }) {
           ""
         )}
       </div>
-    </>
+    </div>
   );
 }
 
