@@ -16,6 +16,5 @@ function Template(args) {
 
 export const SimplyMySpinningCard = Template.bind({});
 SimplyMySpinningCard.args = {
-  img: { src: "./src/assets/img/storybook/BETHON 1.png", alt: "Bethon" },
-  className: "",
+  id: 1
 };

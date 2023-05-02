@@ -2,17 +2,37 @@ import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import useTouchMove from "../../../hooks/useTouchMove";
 import classes from "./MySpinningCard.module.css";
+import getDistrictById from "../../../services/api/district";
+import {
+  getVintageById,
+  getVintageCardById,
+} from "../../../services/api/vintage";
 
-function MySpinningCard({ img }) {
+function MySpinningCard({ id }) {
   const [angle, setAngle] = useState(0);
   const [rotateZ, setRotateZ] = useState(0);
   const [value, setValue] = useState(90);
   const [transform, setTransform] = useState({ x: 148.5, y: 101.25 });
   const [cardActive, setCardActive] = useState(false);
   const [transitionTime, setTransitionTime] = useState(0.1);
+  const [districtId, setDistrictId] = useState(null);
+  const [color, setColor] = useState("#FFFFFF");
 
   // the card color
-  const color = "#EFE075";
+
+  // district id
+  useEffect(() => {
+    getVintageById(id).then(({ district }) => {
+      const districtArray = district.split("/");
+      setDistrictId(parseInt(districtArray[districtArray.length - 1], 10));
+    });
+  }, []);
+
+  useEffect(() => {
+    getDistrictById(districtId).then(({ color_code: colorCode }) => {
+      setColor(`#${colorCode}`);
+    });
+  }, [districtId]);
 
   // css classes
   const {
@@ -183,10 +203,12 @@ function MySpinningCard({ img }) {
           <div
             className={`${cardImg} ${cardActive ? cardImgActive : ""}`}
             style={cardActive ? {} : cardImgDisabled}
-            src={img.src}
-            alt={img.alt}
           >
-            <img className={coloredZone} src={img.src} alt={img.alt} />
+            <img
+              className={coloredZone}
+              src={getVintageCardById(id)}
+              alt="card"
+            />
           </div>
           <img
             className={`${cardImg} position-absolute top-0 start-0`}
@@ -254,15 +276,8 @@ function MySpinningCard({ img }) {
   );
 }
 
-MySpinningCard.defaultProps = {
-  img: {
-    src: "",
-    alt: "carte",
-  },
-};
-
 MySpinningCard.propTypes = {
-  img: PropTypes.shape({ src: PropTypes.string, alt: PropTypes.string }),
+  id: PropTypes.number.isRequired,
 };
 
 export default MySpinningCard;
