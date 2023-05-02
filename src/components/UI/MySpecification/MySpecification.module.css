@@ -1,0 +1,21 @@
+.main {
+    background: linear-gradient(180deg,
+    rgba(239, 224, 117, 0.2) 0%,
+    rgba(239, 224, 117, 0) 100%);
+    color: var(--color);
+    width: 89px;
+    height: 33px;
+}
+
+.title {
+    font-size: 14px;
+    height: 18px;
+    padding: 0;
+    text-align: center;
+}
+
+.number {
+    font-size:12px;
+    height: 15px;
+    text-align: center;
+}
