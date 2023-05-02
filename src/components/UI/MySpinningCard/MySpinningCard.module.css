@@ -34,11 +34,6 @@
 }
 
 .card-img {
-  position: relative;
-  width: 152px;
-  height: 234px;
-  border-radius: 14px;
-  background-color: white;
   transition: 0.1s transform;
   cursor: pointer;
   -webkit-user-drag: none;
@@ -46,19 +41,6 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-}
-
-.colored-zone {
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 132px;
 }
 
 .card-img_active {

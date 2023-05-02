@@ -1,38 +1,41 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import MyCard from "../MyCard/MyCard";
 import useTouchMove from "../../../hooks/useTouchMove";
 import classes from "./MySpinningCard.module.css";
-import getDistrictById from "../../../services/api/district";
-import {
-  getVintageById,
-  getVintageCardById,
-} from "../../../services/api/vintage";
+// import getDistrictById from "../../../services/api/district";
+// import {
+//   getVintageById,
+//   getVintageCardById,
+// } from "../../../services/api/vintage";
 
-function MySpinningCard({ id }) {
+function MySpinningCard({ mycard, color }) {
   const [angle, setAngle] = useState(0);
   const [rotateZ, setRotateZ] = useState(0);
   const [value, setValue] = useState(90);
   const [transform, setTransform] = useState({ x: 148.5, y: 101.25 });
   const [cardActive, setCardActive] = useState(false);
   const [transitionTime, setTransitionTime] = useState(0.1);
-  const [districtId, setDistrictId] = useState(null);
-  const [color, setColor] = useState("#FFFFFF");
+  // const [districtId, setDistrictId] = useState(null);
+  // const [color, setColor] = useState("#FFFFFF");
+  // const [name, setName] = useState("");
 
   // the card color
 
-  // district id
-  useEffect(() => {
-    getVintageById(id).then(({ district }) => {
-      const districtArray = district.split("/");
-      setDistrictId(parseInt(districtArray[districtArray.length - 1], 10));
-    });
-  }, []);
+  // district id (fetches from page)
+  // useEffect(() => {
+  //   getVintageById(id).then(({ district, name }) => {
+  //     const districtArray = district.split("/");
+  //     setName(name);
+  //     setDistrictId(parseInt(districtArray[districtArray.length - 1], 10));
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    getDistrictById(districtId).then(({ color_code: colorCode }) => {
-      setColor(`#${colorCode}`);
-    });
-  }, [districtId]);
+  // useEffect(() => {
+  //   getDistrictById(districtId).then(({ color_code: colorCode }) => {
+  //     setColor(`#${colorCode}`);
+  //   });
+  // }, [districtId]);
 
   // css classes
   const {
@@ -53,7 +56,6 @@ function MySpinningCard({ id }) {
     "card-img": cardImg,
     "card-img_active": cardImgActive,
     "notification-error": notificationError,
-    "colored-zone": coloredZone,
     "card-container": cardContainer,
   } = classes;
 
@@ -200,16 +202,11 @@ function MySpinningCard({ id }) {
               width: angle === 90 || angle === -90 ? "2px" : "0",
             }}
           />
-          <div
-            className={`${cardImg} ${cardActive ? cardImgActive : ""}`}
+          <MyCard
+            img={{ src: mycard.img.src, alt: mycard.img.alt }}
             style={cardActive ? {} : cardImgDisabled}
-          >
-            <img
-              className={coloredZone}
-              src={getVintageCardById(id)}
-              alt="card"
-            />
-          </div>
+            className={`${cardImg} ${cardActive ? cardImgActive : ""}`}
+          />
           <img
             className={`${cardImg} position-absolute top-0 start-0`}
             style={cardActive ? backCardImgDisabled : backCardImgActive}
@@ -276,8 +273,18 @@ function MySpinningCard({ id }) {
   );
 }
 
+MySpinningCard.defaultProps = {
+  color: "#FFFFFF",
+};
+
 MySpinningCard.propTypes = {
-  id: PropTypes.number.isRequired,
+  mycard: PropTypes.shape({
+    className: PropTypes.string,
+    style: PropTypes.shape,
+    img: PropTypes.shape({ src: PropTypes.string, alt: PropTypes.string })
+      .isRequired,
+  }).isRequired,
+  color: PropTypes.string,
 };
 
 export default MySpinningCard;
