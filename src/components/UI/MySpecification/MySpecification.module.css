@@ -11,11 +11,15 @@
     font-size: 14px;
     height: 18px;
     padding: 0;
-    text-align: center;
+    text-align: center;font-weight: 400;
+    line-height: 18px;
+
 }
 
 .number {
-    font-size:12px;
     height: 15px;
     text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
 }

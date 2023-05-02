@@ -13,10 +13,10 @@ function MySpecification({ title, number }) {
 
 MySpecification.defaultProps = {
   title: "titre par defaut",
-  number: "19.8885",
+  number: 19.8885,
 };
 
-MySpecification.protoTypes = {
+MySpecification.propTypes = {
   title: PropTypes.string,
   number: PropTypes.number,
 };
