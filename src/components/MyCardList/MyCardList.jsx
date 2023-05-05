@@ -126,9 +126,8 @@ function MyCardList({ list }) {
       >
         {list.map((elem, index) => (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <Link to={index === active ? `/cards/${elem.id}` : "#"}>
+          <Link key={elem.id} to={index === active ? `/cards/${elem.id}` : "#"}>
             <MyCard
-              key={elem.id}
               onClick={() => setActive(index)}
               className={classes.item}
               img={elem.img}
