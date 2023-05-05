@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import classes from "./MyCardList.module.css";
 import MyCard from "../UI/MyCard/MyCard";
+import ThemeProvider from "../../contexts/theme";
 
 function MyCardList({ list }) {
   const {
@@ -11,7 +12,9 @@ function MyCardList({ list }) {
     mycardlist,
     square,
     slider,
+    light,
   } = classes;
+  const theme = useContext(ThemeProvider);
   const documentRef = useRef(document);
   const [items, setItems] = useState(null);
   const [active, setActive] = useState(3);
@@ -112,7 +115,7 @@ function MyCardList({ list }) {
   }, [items, active]);
 
   return (
-    <div className={mycardlist}>
+    <div className={`${mycardlist} ${theme === "white" ? light : ""}`}>
       <div
         tabIndex="0"
         role="button"

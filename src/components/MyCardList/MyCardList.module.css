@@ -1,4 +1,5 @@
 .square {
+  transition: 0.5s background-color;
   max-width: 420px;
   height: 411px;
   margin: 0 20px;
@@ -46,4 +47,17 @@
 .btnNext{
   left: unset;
   right: 0px;
+}
+
+/* light theme */
+.light > .square {
+  background: #dadada;
+}
+.light > * .btnNext,.light > * .btnPrev{
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+}
+.light > * .btn-disabled {
+  background-color: #ffffff80;
+  color: #dadada;
 }
