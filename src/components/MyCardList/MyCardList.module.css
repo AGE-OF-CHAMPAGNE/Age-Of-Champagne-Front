@@ -1,0 +1,49 @@
+.square {
+  max-width: 420px;
+  height: 411px;
+  margin: 0 20px;
+  background: #1A1A1A;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.mycardlist {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  width: 100%;
+}
+
+.slider{
+  position: relative;
+  width: 100%;
+}
+.item{
+  cursor: pointer;
+  position: absolute !important;
+  transition: 0.5s;
+  left: calc(50% - 76px);
+  top: calc(50% - 117px);
+}
+.btnNext, .btnPrev{
+  transition: 0.5s all;
+  margin: 5px;
+  position: absolute;
+  top: 40%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  background-color: #1c1c1cd5;
+  border: none;
+  font-size:xx-large;
+  left: 0px;
+}
+.btn-disabled {
+  background-color: #323232d5;
+  color: rgba(255, 255, 255, 0.503);
+}
+.btnNext{
+  left: unset;
+  right: 0px;
+}
