@@ -280,9 +280,12 @@ MySpinningCard.defaultProps = {
 MySpinningCard.propTypes = {
   mycard: PropTypes.shape({
     className: PropTypes.string,
-    style: PropTypes.shape,
-    img: PropTypes.shape({ src: PropTypes.string, alt: PropTypes.string })
-      .isRequired,
+    style: PropTypes.shape({
+      transition: PropTypes.string,
+      transform: PropTypes.string,
+      zIndex: PropTypes.string,
+    }),
+    img: PropTypes.shape({ src: PropTypes.string, alt: PropTypes.string }),
   }).isRequired,
   color: PropTypes.string,
 };
