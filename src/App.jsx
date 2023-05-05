@@ -3,22 +3,12 @@ import "./App.css";
 import MyTitle from "./components/UI/MyTitle/MyTitle";
 import MyButton from "./components/UI/MyButton/MyButton";
 import MyInstruction from "./components/UI/MyInstruction/MyInstruction";
+import MySpecificationsList from "./components/MySpecifiationList/MySpecificationsList";
 
 function App() {
   const [b, setB] = useState(true);
   const [theme, setTheme] = useState("black theme");
-  useEffect(() => {
-    const root = document.documentElement;
-    if (b) {
-      root.style.setProperty("--color", "black");
-      root.style.setProperty("--background-color", "white");
-      setTheme("white theme");
-    } else {
-      root.style.setProperty("--color", "white");
-      root.style.setProperty("--background-color", "black");
-      setTheme("black theme");
-    }
-  }, [b]);
+  const [values, setValues] = useState([194.9, 3.61672123, 48.6167]);
   return (
     <div>
       <div className="App">
@@ -31,6 +21,7 @@ function App() {
         </MyButton>
         <MyTitle>Bienvenu</MyTitle>
         <MyInstruction />
+        <MySpecificationsList list={values} />
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ export const SignInButton = Template.bind({});
 SignInButton.args = {
     onClick: () => console.log("INSCRIPTION"),
     children: "S'inscrire",
-    onClick: () => {console.log("INSCRIPTION")}
 };
 
 export const BuyButton = Template.bind({});
