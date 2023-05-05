@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import classes from "./MySpecificationList.module.css";
 import MySpecification from "../UI/MySpecification/MySpecification";
 
-function MySpecificationsList({ area, latitude, longitude }) {
+function MySpecificationsList({ list }) {
   return (
     <div className={classes.spList}>
-      <MySpecification title="Superficie (ha)" number={area} />
-      <MySpecification title="Longitude" number={longitude} />
-      <MySpecification title="Latitude" number={latitude} />
+      <MySpecification title="Superficie (ha)" number={list[0]} />
+      <MySpecification title="Longitude" number={list[1]} />
+      <MySpecification title="Latitude" number={list[2]} />
     </div>
   );
 }
