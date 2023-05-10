@@ -8,7 +8,11 @@ function MyHelpClassification({ content }) {
 
   return (
     <div className={classes.main}>
-      <button type="button" onClick={() => setB(!b)} className={classes.button}>
+      <button
+        type="button"
+        onClick={() => setB(!b)}
+        className={`${classes.button} ${b ? "" : "opacity-50"}`}
+      >
         <div className={classes.help}>?</div>
       </button>
       <div className={`${classes.popup} ${b ? "" : "d-none"}`}>
