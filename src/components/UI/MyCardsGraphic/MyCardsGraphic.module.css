@@ -1,0 +1,70 @@
+.main {
+    height: 283px;
+    color: var(--color)
+}
+
+.map_legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 150px;
+}
+
+.legend {
+    display: flex;
+    font-size: 10px;
+    gap: 10px;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+}
+.pie {
+    position: absolute;
+    left: 180px;
+}
+
+#yellow_box {
+    background: #FABD62;
+}
+
+#blue_box {
+    background: #2171AD;
+}
+.number_div {
+    position: absolute;
+    top: 135px;
+    left: 235px;
+    font-size: 24px;
+    z-index: -1;
+}
+
+.number {
+    position: absolute;
+    top: 0px;
+}
+
+.number_background {
+    border-radius: 50%;
+    position: relative;
+    background: #000000;
+    opacity: 0.5;
+    height: 120px;
+    width: 130px;
+    left: -30px;
+    top: -40px;
+}
+
+.img {
+    height: 203px;
+    width: 273px;
+    position: absolute;
+    z-index: -1;
+    rotate: -20deg;
+    left: 20px;
+    top: 30px
+}
