@@ -1,12 +1,9 @@
 import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
+import PropTypes, { shape } from "prop-types";
 import classes from "./MyCardsGraphic.module.css";
 
-function MyCardsGraphic() {
-  const data = [
-    { name: "Group A", value: 24 },
-    { name: "Group B", value: 12 },
-  ];
+function MyCardsGraphic({ data }) {
   const COLORS = ["#2171AD", "#FABD62"];
 
   return (
@@ -54,4 +51,16 @@ function MyCardsGraphic() {
   );
 }
 
+MyCardsGraphic.defaultProps = {
+  data: [
+    { name: "Group A", value: 24 },
+    { name: "Group B", value: 12 },
+  ],
+};
+
+MyCardsGraphic.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string, value: PropTypes.number })
+  ),
+};
 export default MyCardsGraphic;
