@@ -7,10 +7,11 @@ import MyButton from "./components/UI/MyButton/MyButton";
 import MyCardList from "./components/MyCardList/MyCardList";
 import MyInstruction from "./components/UI/MyInstruction/MyInstruction";
 import MySpecificationsList from "./components/MySpecifiationList/MySpecificationsList";
+import MyPopUp from "./components/UI/MyPopUp/MyPopUp";
 
 function App() {
   const [values] = useState([194.9, 3.61672123, 48.6167]);
-
+  const [active, setActive] = useState(true);
   const [theme, setTheme] = useState("dark");
 
   return (
@@ -21,7 +22,10 @@ function App() {
           element={
             <div className="App">
               <MyButton
-                onClick={() => setTheme(theme === "dark" ? "white" : "dark")}
+                onClick={() => {
+                  setTheme(theme === "dark" ? "white" : "dark");
+                  setActive(true);
+                }}
               >
                 change
               </MyButton>
@@ -81,6 +85,7 @@ function App() {
                 ]}
               />
               <MySpecificationsList list={values} />
+              <MyPopUp active={active} onClickOk={() => setActive(false)} />
             </div>
           }
         />

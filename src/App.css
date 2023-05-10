@@ -1,6 +1,8 @@
 :root {
   --color: white;
-  --background-color: black;
+  --background-color: #252525;
+  --red-color: #FF3939;
+  --black-color: #1D1D1D;
 }
 
 #root {
