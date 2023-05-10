@@ -9,10 +9,12 @@ function ThemeProvider({ value, children }) {
     if (value === "white") {
       root.current.style.setProperty("--color", "black");
       root.current.style.setProperty("--background-color", "white");
+      root.current.style.setProperty("--red-color", "#9A0A06");
     }
     if (value === "dark") {
       root.current.style.setProperty("--color", "white");
       root.current.style.setProperty("--background-color", "black");
+      root.current.style.setProperty("--red-color", "#FF3838");
     }
   }, [value]);
   return (
