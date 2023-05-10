@@ -6,22 +6,12 @@ import classes from "./MyHelpClassification.module.css";
 function MyHelpClassification({ content }) {
   const [b, setB] = useState(false);
 
-  function DisplayOrNot() {
-    if (b == false) {
-      document.getElementById("popup").style.display = "block";
-      setB(true);
-    } else {
-      document.getElementById("popup").style.display = "none";
-      setB(false);
-    }
-  }
-
   return (
     <div className={classes.main}>
-      <button type="button" onClick={DisplayOrNot} className={classes.button}>
+      <button type="button" onClick={() => setB(!b)} className={classes.button}>
         <div className={classes.help}>?</div>
       </button>
-      <div className={classes.popup} id="popup">
+      <div className={`${classes.popup} ${b ? "" : "d-none"}`}>
         {content}
         <div className={classes.triangle} />
       </div>
