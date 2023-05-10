@@ -1,0 +1,46 @@
+.main {
+    display: flex;
+}
+
+.button {
+    border: 0;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+
+}
+
+.help {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+}
+
+.popup {
+    position: absolute;
+    background: #000000;
+    border-radius: 4px;
+    font-size: 8px;
+    padding: 4px 6px;
+    width: max-content;
+    max-width: 130px;
+    min-height: 35px;
+    color: var(--color);
+    left: 50px;
+    right: 20px;
+}
+
+.triangle::after {
+    position: absolute;
+    top : 6px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 30px 15px 30px;
+    border-color: transparent transparent #000000 transparent;
+    rotate: 22deg;
+    left: -15px;
+    z-index: -1;
+}
