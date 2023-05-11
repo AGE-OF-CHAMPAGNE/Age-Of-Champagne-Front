@@ -1,9 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import { withRouter } from 'storybook-addon-react-router-v6';
 import MyCardList from "./MyCardList.jsx";
-import "./MyCardList.module.css"
-import "/src/main.css";
 
 export default {
     title: "Components/MyCardList",

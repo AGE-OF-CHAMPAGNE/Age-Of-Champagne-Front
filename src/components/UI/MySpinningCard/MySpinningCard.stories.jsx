@@ -1,8 +1,6 @@
 /* eslint-disable */
 import React from "react";
 import MySpinningCard from "./MySpinningCard";
-import "./MySpinningCard";
-import "/src/main.css";
 
 export default {
   title: "Components/MySpinningCard",
