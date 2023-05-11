@@ -18,8 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
-    "recharts": "^2.6.0",
-    "storybook-addon-react-router-v6": "^0.3.6"
+    "recharts": "^2.6.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.5",
