@@ -1,8 +1,6 @@
 /* eslint-disable */
 import React from "react";
 import MyButton from "./MyButton.jsx";
-import "./MyButton.module.css"
-import "/src/main.css";
 
 export default {
     title: "Components/MyButton",

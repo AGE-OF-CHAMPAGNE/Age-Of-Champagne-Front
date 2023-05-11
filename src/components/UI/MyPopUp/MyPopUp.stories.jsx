@@ -1,8 +1,6 @@
 /* eslint-disable */
-import React, {useState} from "react";
+import React from "react";
 import MyPopUp from "./MyPopUp.jsx";
-import "./MyPopUp.module.css"
-import "/src/main.css";
 
 export default {
     title: "Components/MyPopUp",
