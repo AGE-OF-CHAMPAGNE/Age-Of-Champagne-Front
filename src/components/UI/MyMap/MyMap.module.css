@@ -1,0 +1,327 @@
+.MyMap {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: var(--background-color);
+}
+.list {
+  position: absolute;
+  z-index: 4;
+  width: 100% !important;
+  height: 242px !important;
+  max-width: 650px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  width: 650px;
+}
+.region {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.region-img {
+  transition: 0.5s all;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.Cote-de-Sezanne-img {
+  width: 92px;
+}
+.Cote-de-Sezanne {
+  transition: 0.5s all;
+  transform: translateX(calc(-50% - 126px)) translateY(calc(-50% - 89px));
+}
+
+.Cote-de-Sezanne-img:hover {
+  width: 110px;
+  -webkit-filter: drop-shadow(-1px -2px 2px #685d00);
+  filter: drop-shadow(-1px -2px 2px #685d00);
+}
+
+.Cote-de-Sezanne_active {
+  width: 400px !important;
+  transform: translateX(30%) translateY(-10%);
+}
+
+.Cote-des-Bar {
+  transform: translateX(calc(-50% + 180px)) translateY(calc(-50% + 183px));
+}
+.Cote-des-Bar-img {
+  width: 213px;
+}
+.Cote-des-Bar-img:hover {
+  width: 230px;
+  -webkit-filter: drop-shadow(-1px -2px 2px #53006a);
+  filter: drop-shadow(-1px -2px 2px #53006a);
+}
+.Cote-des-Bar_active {
+  width: 400px !important;
+  transform: translateX(-50%) translateY(-100%);
+}
+
+.Cote-des-blancs {
+  transform: translateX(calc(-50% - 79px)) translateY(calc(-50% - 219px));
+}
+.Cote-des-blancs-img {
+  width: 150px;
+}
+.Cote-des-blancs-img:hover {
+  width: 170px;
+  -webkit-filter: drop-shadow(-1px -2px 2px #485c00);
+  filter: drop-shadow(-1px -2px 2px #485c00);
+}
+.Cote-des-blancs_active {
+  width: 400px !important;
+  transform: translateX(10%) translateY(20%);
+}
+.Coteaux-vitryats {
+  transform: translateX(calc(-50% + 199px)) translateY(calc(-50% - 167px));
+}
+.Coteaux-vitryats-img {
+  width: 35px;
+}
+.Coteaux-vitryats-img:hover {
+  width: 50px;
+  -webkit-filter: drop-shadow(-1px -2px 2px #003442);
+  filter: drop-shadow(-1px -2px 2px #003442);
+}
+.Coteaux-vitryats_active {
+  width: 400px !important;
+  transform: translateX(-50%) translateY(10%);
+}
+.Montagne-de-Reims {
+  transform: translateX(calc(-50% - 37px)) translateY(calc(-50% - 366px));
+}
+.Montagne-de-Reims-img {
+  width: 176px;
+}
+.Montagne-de-Reims-img:hover {
+  width: 200px;
+  -webkit-filter: drop-shadow(-1px -2px 2px #4e3300);
+  filter: drop-shadow(-1px -2px 2px #4e3300);
+}
+.Montagne-de-Reims_active {
+  width: 400px !important;
+  transform: translateX(5%) translateY(50%);
+}
+.Vallee-de-la-Marne {
+  transform: translateX(calc(-50% - 138px)) translateY(calc(-50% - 276px));
+}
+.Vallee-de-la-Marne-img {
+  width: 283px;
+}
+.Vallee-de-la-Marne-img:hover {
+  width: 300px;
+  -webkit-filter: drop-shadow(-1px -2px 2px #5c221d);
+  filter: drop-shadow(-1px -2px 2px #5c221d);
+}
+.Vallee-de-la-Marne_active {
+  width: 400px !important;
+  transform: translateX(40%) translateY(50%);
+}
+.dark-bg {
+  transition: 0.5s opacity;
+  top: 0;
+  left: 0;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  position: fixed;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+}
+@media (max-width: 650px) {
+
+  .img {
+    width: 400px;
+  }
+  .Cote-de-Sezanne {
+    transform: translateX(calc(-50% - 78px)) translateY(calc(-50% - 55px));
+  }
+  .Cote-de-Sezanne-img {
+    width: 55px;
+  }
+  .Cote-de-Sezanne-img:hover {
+    width: 65px;
+  }
+  .Cote-de-Sezanne_active {
+    width: 300px !important;
+  }
+  .Cote-des-Bar {
+    transform: translateX(calc(-50% + 111px)) translateY(calc(-50% + 111px));
+  }
+  .Cote-des-Bar-img {
+    width: 127px;
+  }
+  .Cote-des-Bar-img:hover {
+    width: 137px;
+  }
+  .Cote-des-Bar_active {
+    width: 300px !important;
+    transform: translateX(-35%) translateY(-60%);
+  }
+  .Cote-des-blancs {
+    transform: translateX(calc(-50% - 49px)) translateY(calc(-50% - 135px));
+  }
+  .Cote-des-blancs-img {
+    width: 94px;
+  }
+  .Cote-des-blancs-img:hover {
+    width: 104px;
+  }
+  .Cote-des-blancs_active {
+    width: 300px !important;
+  }
+  .Coteaux-vitryats {
+    transform: translateX(calc(-50% + 123px)) translateY(calc(-50% - 103px));
+  }
+  .Coteaux-vitryats-img {
+    width: 22px;
+  }
+  .Coteaux-vitryats-img:hover {
+    width: 32px;
+  }
+  .Coteaux-vitryats_active {
+    width: 150px !important;
+    transform: translateX(-90%) translateY(20%);
+
+  }
+  .Montagne-de-Reims {
+    transform: translateX(calc(-50% - 22px)) translateY(calc(-50% - 225px));
+  }
+  .Montagne-de-Reims-img {
+    width: 110px;
+  }
+  .Montagne-de-Reims-img:hover {
+    width: 120px;
+  }
+  .Montagne-de-Reims_active {
+    width: 300px !important;
+  }
+  
+  .Vallee-de-la-Marne {
+    transform: translateX(calc(-50% - 85px)) translateY(calc(-50% - 170px));
+  }
+  .Vallee-de-la-Marne-img {
+    width: 176px;
+  }
+  .Vallee-de-la-Marne-img:hover {
+    width: 186px;
+  }
+  .Vallee-de-la-Marne_active {
+    width: 300px !important;
+    transform: translateX(30%) translateY(50%);
+
+  }
+}
+
+@media (max-width: 320px) {
+  .region {
+    transition: 0.3s all;
+  }
+  .img {
+    width: 300px;
+  }
+  .Cote-de-Sezanne {
+    transform: translateX(calc(-50% - 58px)) translateY(calc(-50% - 41px));
+  }
+  .Cote-de-Sezanne-img:hover {
+    width: 52px;
+  }
+  .Cote-de-Sezanne-img {
+    width: 42px;
+  }
+  .Cote-de-Sezanne_active {
+    width: 200px !important;
+    transform: translateX(30%) translateY(0);
+  }
+  .Cote-des-Bar {
+    transform: translateX(calc(-50% + 84px)) translateY(calc(-50% + 84px));
+  }
+  .Cote-des-Bar-img {
+    width: 96px;
+  }
+  .Cote-des-Bar-img:hover {
+    width: 106px;
+  }
+  .Cote-des-Bar_active {
+    width: 200px !important;
+    transform: translateX(-50%) translateY(-80%);
+  }
+  .Cote-des-blancs {
+    transform: translateX(calc(-50% - 36px)) translateY(calc(-50% - 101px));
+  }
+  .Cote-des-blancs-img {
+    width: 69px;
+  }
+  .Cote-des-blancs-img:hover {
+    width: 79px;
+  }
+  .Cote-des-blancs_active {
+    width: 200px !important;
+    transform: translateX(10%) translateY(20%);
+  }
+  .Coteaux-vitryats {
+    width: 16px;
+    transform: translateX(calc(-50% + 92px)) translateY(calc(-50% - 77px));
+  }
+  .Coteaux-vitryats-img {
+    width: 16px;
+  }
+  .Coteaux-vitryats-img:hover {
+    width: 26px;
+  }
+  .Coteaux-vitryats_active {
+    width: 100px !important;
+    transform: translateX(-130%) translateY(20%);
+  }
+  .Montagne-de-Reims {
+    transform: translateX(calc(-50% - 17px)) translateY(calc(-50% - 168px));
+  }
+  .Montagne-de-Reims-img {
+    width: 82px;
+  }
+  .Montagne-de-Reims-img:hover {
+    width: 92px;
+  }
+  .Montagne-de-Reims_active {
+    width: 200px !important;
+    transform: translateX(5%) translateY(50%);
+  }
+  .Vallee-de-la-Marne {
+    transform: translateX(calc(-50% - 63px)) translateY(calc(-50% - 127px));
+  }
+  .Vallee-de-la-Marne-img {
+    width: 130px;
+  }
+  .Vallee-de-la-Marne-img:hover {
+    width: 140px;
+  }
+  .Vallee-de-la-Marne_active {
+    width: 200px !important;
+    transform: translateX(30%) translateY(50%);
+  }
+}
