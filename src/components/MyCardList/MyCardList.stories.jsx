@@ -5,7 +5,6 @@ import MyCardList from "./MyCardList.jsx";
 export default {
     title: "Components/MyCardList",
     component: MyCardList,
-    decorators: [withRouter],
     argTypes: {},
 };
 

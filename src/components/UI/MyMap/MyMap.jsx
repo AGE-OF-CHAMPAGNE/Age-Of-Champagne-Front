@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import LazyLoad from "react-lazyload";
 import classes from "./MyMap.module.css";
 import MySpinner from "../MySpinner/MySpinner";
@@ -11,9 +11,9 @@ function MyMap() {
   const [vintages, setVintages] = useState(null);
   const [loadedMap, setLoadedMap] = useState(0);
 
-  const handleImageLoad = () => {
-    setLoadedMap(loadedMap + 1);
-  };
+  const handleImageLoad = useCallback(() => {
+    setLoadedMap((prevLoadedMap) => prevLoadedMap + 1);
+  }, []);
 
   useEffect(() => {
     getVintagesByDistrictName(vintageName).then((response) => {
