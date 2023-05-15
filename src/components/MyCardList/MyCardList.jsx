@@ -5,7 +5,7 @@ import classes from "./MyCardList.module.css";
 import MyCard from "../UI/MyCard/MyCard";
 import ThemeProvider from "../../contexts/theme";
 
-function MyCardList({ list }) {
+function MyCardList({ className, list, color }) {
   const {
     item,
     "btn-disabled": btnDisabled,
@@ -17,7 +17,7 @@ function MyCardList({ list }) {
   const theme = useContext(ThemeProvider);
   const documentRef = useRef(document);
   const [items, setItems] = useState(null);
-  const [active, setActive] = useState(3);
+  const [active, setActive] = useState(0);
 
   const [dragStartX, setDragStartX] = useState(null);
   const [dragStartScrollLeft, setDragStartScrollLeft] = useState(null);
@@ -86,6 +86,10 @@ function MyCardList({ list }) {
   }, []);
 
   useEffect(() => {
+    setActive(items ? Math.round(items.length / 2) - 1 : 0);
+  }, [items]);
+
+  useEffect(() => {
     if (items) {
       let stt = 0;
       items[active].style.transform = "none";
@@ -115,11 +119,14 @@ function MyCardList({ list }) {
   }, [items, active]);
 
   return (
-    <div className={`${mycardlist} ${theme === "white" ? light : ""}`}>
+    <div
+      className={`${className} ${mycardlist} ${theme === "white" ? light : ""}`}
+    >
       <div
         tabIndex="0"
         role="button"
         className={`${square} ${slider}`}
+        style={{ background: color }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
@@ -159,12 +166,21 @@ function MyCardList({ list }) {
     </div>
   );
 }
+MyCardList.defaultProps = {
+  className: "",
+  color: "#1A1A1A",
+};
 
 MyCardList.propTypes = {
+  className: PropTypes.string,
+  color: PropTypes.string,
   list: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      img: PropTypes.shape({ src: PropTypes.string, alt: PropTypes.string }),
+      img: PropTypes.shape({
+        src: PropTypes.string,
+        alt: PropTypes.string,
+      }),
     })
   ).isRequired,
 };
