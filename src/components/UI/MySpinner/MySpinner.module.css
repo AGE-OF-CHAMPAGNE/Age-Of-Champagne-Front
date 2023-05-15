@@ -1,0 +1,67 @@
+.opposites {
+  position: absolute;
+  z-index: 3;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+}
+.opposites {
+  animation: opposites 2.5s ease-out 0s infinite;  
+}
+.tl, .tr, .br, .bl {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+.tl, .tr {
+  top: 0; 
+}
+.tr, .br {
+  left: 30px; 
+}
+.tl, .br {
+  animation: tlbr 2.5s ease-out 0s infinite;
+}
+.br, .bl {
+  top: 30px; 
+}
+.tl, .bl {
+  left: 0; 
+}
+.tr, .bl {
+  animation: trbl 2.5s ease-out 0s infinite;
+}
+.tl {
+  background: #E6AA3C;
+  transform-origin: bottom right;
+}
+.tr {
+  background: #C7827C; 
+  transform-origin: bottom left;
+}
+.br {
+  background: #80933A; 
+  transform-origin: top left;
+}
+.bl {
+  background: #925EA0; 
+  transform-origin: top right;
+}
+
+@keyframes tlbr {
+  0% {transform: rotate(0);}
+  20% {transform: rotate(90deg);}
+  40% {transform: rotate(90deg);}
+  60% {transform: rotate(0);}
+}
+@keyframes trbl {
+  20% {transform: rotate(0);}
+  40% {transform: rotate(90deg);}
+  60% {transform: rotate(90deg);}
+  80% {transform: rotate(0);}
+}
+@keyframes opposites {
+  80% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
