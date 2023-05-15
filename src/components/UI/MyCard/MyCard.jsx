@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import LazyLoad from "react-lazyload";
 import classes from "./MyCard.module.css";
+import MySpinner from "../MySpinner/MySpinner";
 
 function MyCard({ onClick, className, style, img }) {
   const { "colored-zone": coloredZone, card } = classes;
+  const [loaded, setLoaded] = useState(false);
   let clickProps = {
     role: "",
     tabIndex: "",
@@ -20,6 +23,11 @@ function MyCard({ onClick, className, style, img }) {
       onClick,
     };
   }
+
+  const handleImageLoad = () => {
+    setLoaded(true);
+  };
+
   return (
     <div
       role="button"
@@ -30,7 +38,14 @@ function MyCard({ onClick, className, style, img }) {
       className={`${card} ${className}`}
       style={style}
     >
-      <img className={coloredZone} src={img.src} alt={img.alt} />
+      <LazyLoad offset={200} once placeholder={<MySpinner active />}>
+        <img
+          className={`${coloredZone} lazy-image ${loaded ? "loaded" : ""}`}
+          src={img.src}
+          alt={img.alt}
+          onLoad={handleImageLoad}
+        />
+      </LazyLoad>
     </div>
   );
 }
