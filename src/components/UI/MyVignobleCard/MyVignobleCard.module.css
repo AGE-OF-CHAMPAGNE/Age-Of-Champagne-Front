@@ -1,0 +1,55 @@
+.main {
+    width: 158px;
+    height: 245px;
+    color: var(--background-color);
+    border-radius: 21px;
+    position: absolute;
+}
+
+.name {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-left: 27px;
+}
+
+.p {
+    font-size: 8px;
+    margin-top: 11px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+.desc {
+    margin-top: 10px;
+    font-size: 8px;
+    max-width: 138px;
+    margin-left: 10px;
+}
+
+.imageBox {
+    display: flex;
+    justify-content: center;
+}
+
+.img {
+    width: 138px;
+    height: 78px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    height: 21px !important;
+    width: 76px !important;
+    font-size: 10px !important;
+    color: var(--background-color) !important;
+}
