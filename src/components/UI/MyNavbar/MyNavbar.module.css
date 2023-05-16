@@ -1,0 +1,18 @@
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 44px;
+  background-color: var(--black-color);
+}
+.links {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.item {
+  position: relative;
+}
