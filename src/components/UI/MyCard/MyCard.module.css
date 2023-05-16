@@ -9,8 +9,8 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 132px;
+    filter: blur(20px);
 }
-
 .card {
     -webkit-user-drag: none;
     user-select: none;

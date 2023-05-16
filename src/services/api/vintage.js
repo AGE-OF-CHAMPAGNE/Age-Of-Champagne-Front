@@ -21,3 +21,49 @@ export function getVintageById(id) {
 export function getVintageCardById(id) {
   return `${BASE_URL}/vintage/${id}/card`;
 }
+
+export function getVintagesByDistrictName(name) {
+  return fetch(`${BASE_URL}/districts`)
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      }
+      const error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    })
+    .then((response) => response.json())
+    .then(({ "hydra:member": items }) => {
+      let vintages = null;
+      items.forEach((element) => {
+        if (element.name === name) {
+          vintages = element.vintages;
+        }
+      });
+      if (vintages !== null) {
+        return vintages;
+      }
+      throw new Error(`vintage ${name} not found`);
+    })
+    .then((response) => {
+      const vintagesIdArr = [];
+      response.forEach((vintage) => {
+        const arr = vintage.split("/");
+        vintagesIdArr.push(arr[arr.length - 1]);
+      });
+      return vintagesIdArr;
+    })
+    .then((vintagesIdArr) => {
+      const fetchVintages = vintagesIdArr.map((id) =>
+        getVintageById(id).then((vintage) => ({
+          vintage,
+          card: getVintageCardById(id),
+        }))
+      );
+      return Promise.all(fetchVintages);
+    })
+    .catch((e) => {
+      console.log(`Error: ${e.message}`);
+      console.log(e.response);
+    });
+}

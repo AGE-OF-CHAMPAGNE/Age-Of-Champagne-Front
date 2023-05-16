@@ -14,15 +14,11 @@ function MySpecificationsList({ list }) {
 }
 
 MySpecificationsList.defaultProps = {
-  area: 194.9,
-  longitude: 3.6167,
-  latitude: 48.6167,
+  list: [],
 };
 
 MySpecificationsList.propTypes = {
-  area: PropTypes.number,
-  longitude: PropTypes.number,
-  latitude: PropTypes.number,
+  list: PropTypes.arrayOf(PropTypes.number),
 };
 
 export default MySpecificationsList;
