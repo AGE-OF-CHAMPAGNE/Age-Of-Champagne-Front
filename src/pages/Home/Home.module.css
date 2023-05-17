@@ -1,0 +1,13 @@
+.logo {
+  position: relative;
+  top: 25px;
+  left: calc(50% - 66px);
+  margin-bottom: 30px;
+}
+.text {
+  color: var(--color);
+  font-size: 16px;
+}
+.scaled {
+  transform: scale(-1, 1);
+}
