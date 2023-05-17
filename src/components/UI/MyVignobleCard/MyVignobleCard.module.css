@@ -1,44 +1,41 @@
 .main {
     width: 158px;
-    height: 245px;
+    min-height: 245px;
     color: var(--background-color);
     border-radius: 21px;
-    position: absolute;
+    padding: 13px 10px 10px 10px;
 }
 
 .name {
     font-size: 16px;
-    margin-top: 15px;
-    margin-left: 27px;
+    width: 100%;
+    text-align: center;
 }
 
 .p {
     font-size: 8px;
-    margin-top: 11px;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .icon {
+    flex-basis: 50%;
     display: flex;
+    gap: 3px;
     align-items: center;
 }
 
 .desc {
+    border-top: white solid 1px;
+    border-bottom: white solid 1px;
+    overflow: auto;
+    text-overflow: ellipsis;
+    height: 50px;
     margin-top: 10px;
     font-size: 8px;
-    max-width: 138px;
-    margin-left: 10px;
-}
-
-.imageBox {
-    display: flex;
-    justify-content: center;
 }
 
 .img {
-    width: 138px;
-    height: 78px;
     margin-top: 5px;
     margin-bottom: 10px;
 }

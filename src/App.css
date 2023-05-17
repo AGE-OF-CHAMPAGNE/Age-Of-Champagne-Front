@@ -1,11 +1,25 @@
 :root {
   --color: white;
-  --background-color: #252525;
-  --red-color: #FF3939;
-  --black-color: #1D1D1D;
+  --background-color: #252525 !important;
+  --red-color: #FF3939 !important;
+  --black-color: #1D1D1D !important;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+p {
+  color: var(--color);
+}
+section {
+  position: relative;
+  margin-bottom: 25px;
+}
 #root {
+  margin-bottom: 44px;
   position: relative;
   width: 100%;
   min-height: 100vh;

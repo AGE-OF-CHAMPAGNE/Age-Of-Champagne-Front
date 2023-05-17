@@ -17,4 +17,5 @@ SimpleMyInstruction.args = {
     title: "Commencez le jeu",
     description:
         "Après avoir fait l’aquisition du jeu munissez-vous de votre téléphone ainsi que de la boite du jeu",
+    side: "right"
 };
