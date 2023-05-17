@@ -10,6 +10,7 @@
 
 .title {
     position: relative;
+    margin-bottom: 15px;
     color: var(--color);
     font-size: 24px;
 }

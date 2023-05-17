@@ -17,14 +17,16 @@ function MyButton({ onClick, children, className, color }) {
 
 MyButton.defaultProps = {
   onClick: () => {},
-  children: "default button",
   className: "",
   color: "#fabd62",
 };
 
 MyButton.propTypes = {
   onClick: PropTypes.func,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.string,
+  ]).isRequired,
   className: PropTypes.string,
   color: PropTypes.string,
 };

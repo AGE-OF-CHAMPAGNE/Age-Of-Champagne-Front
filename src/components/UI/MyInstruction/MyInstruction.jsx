@@ -1,25 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import classes from "./MyInstruction.module.css";
+import ThemeProvider from "../../../contexts/theme";
 
-function MyInstruction({ className, img, color, title, description }) {
+function MyInstruction({ className, img, color, title, description, side }) {
+  const {
+    "right-title": rightTitle,
+    "right-desc": rightDesc,
+    light,
+    step__circle: stepCircle,
+    right,
+    step__img: stepImg,
+    text,
+    step__title: stepTitle,
+    step__description: stepDescription,
+  } = classes;
+  const theme = useContext(ThemeProvider);
+
   return (
-    <div className={`${classes.step}  ${className}`}>
-      <div className={classes.step__circle} style={{ backgroundColor: color }}>
-        <img className={classes.step__img} src={img.src} alt={img.alt} />
+    <div
+      className={`${className} ${side === "right" ? right : ""} ${
+        theme === "white" ? light : ""
+      }`}
+    >
+      <div className={stepCircle} style={{ backgroundColor: color }}>
+        <img className={stepImg} src={img.src} alt={img.alt} />
       </div>
 
-      <div className={classes.text}>
-        <div className={classes.step__title} style={{ backgroundColor: color }}>
+      <div className={text}>
+        <div
+          className={`${stepTitle} ${side === "right" ? rightTitle : ""}`}
+          style={{ backgroundColor: color }}
+        >
           {title}
         </div>
-        <div className={classes.step__description}>{description}</div>
+        <div
+          className={`${stepDescription} ${side === "right" ? rightDesc : ""}`}
+        >
+          {description}
+        </div>
       </div>
     </div>
   );
 }
 
 MyInstruction.defaultProps = {
+  side: "left",
   img: { src: "/src/assets/img/cards/tourist.png", alt: "touriste" },
   color: "#F0AE3C",
   title: "Titre par defaut",
@@ -29,6 +55,7 @@ MyInstruction.defaultProps = {
 };
 
 MyInstruction.propTypes = {
+  side: PropTypes.oneOf(["right", "left"]),
   img: PropTypes.shape({ src: PropTypes.string, alt: PropTypes.string }),
   color: PropTypes.string,
   title: PropTypes.string,
