@@ -1,6 +1,32 @@
 /* eslint-disable no-console */
 import BASE_URL from "./url";
 
+export function getVintageByName(name) {
+  return fetch(`${BASE_URL}/vintages`)
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      }
+      const error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    })
+    .then((response) => response.json())
+    .then(({ "hydra:member": vintages }) => {
+      let vintage = null;
+      vintages.forEach((element) => {
+        if (element.name === name) {
+          vintage = element;
+        }
+      });
+      return vintage;
+    })
+    .catch((e) => {
+      console.log(`Error: ${e.message}`);
+      console.log(e.response);
+    });
+}
+
 export function getVintageById(id) {
   return fetch(`${BASE_URL}/vintage/${id}`)
     .then((response) => {
