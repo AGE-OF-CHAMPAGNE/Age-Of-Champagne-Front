@@ -71,7 +71,7 @@
   height: 200px;
 }
 .topthreeBg {
-  background-image: url("src/assets/img/bg.jpg");
+  background-image: url("/src/assets/img/test/Group 22.jpg");
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

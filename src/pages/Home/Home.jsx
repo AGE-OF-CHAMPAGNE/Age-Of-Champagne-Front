@@ -8,6 +8,7 @@ import MyButtonLink from "../../components/UI/MyButtonLink/MyButtonLink";
 import MyInstruction from "../../components/UI/MyInstruction/MyInstruction";
 import MyMap from "../../components/UI/MyMap/MyMap";
 import MyVignobleCardList from "../../components/MyVignobleCardList/MyVignobleCardList";
+import MySlider from "../../components/UI/MySlider/MySlider";
 
 function Home() {
   const {
@@ -42,6 +43,24 @@ function Home() {
             S&apos;Inscrire
           </MyButtonLink>
         </div>
+        <MySlider
+          name="homepage"
+          imgs={[
+            { id: 0, src: "/src/assets/img/slider/AoC_-30.jpg", alt: "" },
+            { id: 1, src: "/src/assets/img/slider/AoC_-31.jpg", alt: "" },
+            { id: 2, src: "/src/assets/img/slider/AoC_-32.jpg", alt: "" },
+            { id: 3, src: "/src/assets/img/slider/AoC_-33.jpg", alt: "" },
+            { id: 4, src: "/src/assets/img/slider/AoC_-34.jpg", alt: "" },
+            { id: 5, src: "/src/assets/img/slider/AoC_-36.jpg", alt: "" },
+            { id: 6, src: "/src/assets/img/slider/AoC_-37.jpg", alt: "" },
+            { id: 7, src: "/src/assets/img/slider/AoC_-38.jpg", alt: "" },
+            { id: 8, src: "/src/assets/img/slider/AoC_-39.jpg", alt: "" },
+            { id: 9, src: "/src/assets/img/slider/AoC_-41.jpg", alt: "" },
+            { id: 10, src: "/src/assets/img/slider/AoC_-42.jpg", alt: "" },
+            { id: 11, src: "/src/assets/img/slider/AoC_-43.jpg", alt: "" },
+            { id: 12, src: "/src/assets/img/slider/AoC_-44.jpg", alt: "" },
+          ]}
+        />
       </section>
 
       <section className="container">
