@@ -1,0 +1,77 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.page-name {
+  line-height: 100%;
+}
+.name-wrapper {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.vintage-name {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.district-name {
+  font-size: 16px;
+  color: white;
+  opacity: 0.8;
+}
+.location-btn {
+  padding: 5px 10px;
+  text-transform: capitalize;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+.location-btn:hover {
+  background: rgb(0, 0, 0) !important;
+}
+.line {
+  display: block;
+  width: 1px;
+  height: 16px;
+  background-color:rgba(255, 255, 255, 0.5);
+}
+.line{
+  background-color:rgba(255, 255, 255, 1);
+}
+.class-wrapper {
+  display: flex;
+  margin-left: 18px;
+  align-items: center;
+  gap: 15px;
+}
+.classification {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.classification.active {
+  color: rgba(255, 255, 255, 1);
+}
+.subtitle {
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #FFFFFF;
+}
+.btn {
+  color: black;
+  position: fixed;
+  bottom: 59px;
+  left: calc(50% - 83px);
+}
+.next {
+  position: fixed !important;
+  bottom: 59px;
+  left: calc(50% + 109px);
+}
+/* 50% - 22.5px + 83px + 24px */
+.prev {
+  transform: rotate(180deg);
+  position: fixed !important;
+  bottom: 59px;
+  left: calc(50% - 153px);
+}
