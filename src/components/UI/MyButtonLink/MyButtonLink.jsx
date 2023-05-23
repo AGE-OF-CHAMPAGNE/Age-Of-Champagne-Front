@@ -16,14 +16,17 @@ function MyButtonLink({ to, children, className, color }) {
 }
 
 MyButtonLink.defaultProps = {
-  children: "default button",
   className: "",
   color: "#fabd62",
 };
 
 MyButtonLink.propTypes = {
   to: PropTypes.string.isRequired,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
   className: PropTypes.string,
   color: PropTypes.string,
 };

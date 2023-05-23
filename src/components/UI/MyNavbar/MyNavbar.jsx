@@ -14,12 +14,12 @@ function MyNavbar() {
             <Link to="/cards">
               <img
                 className={active === 0 ? "d-none" : ""}
-                src="src/assets/img/icons/material-symbols_collections-bookmark-outline.png"
+                src="/src/assets/img/icons/material-symbols_collections-bookmark-outline.png"
                 alt="tous les cartes"
               />
               <img
                 className={active === 0 ? "" : "d-none"}
-                src="src/assets/img/icons/material-symbols_collections-bookmark-rounded.png"
+                src="/src/assets/img/icons/material-symbols_collections-bookmark-rounded.png"
                 alt="tous les cartes"
               />
             </Link>
@@ -30,13 +30,13 @@ function MyNavbar() {
             <Link to="/moncompte">
               <img
                 className={active === 1 ? "d-none" : ""}
-                src="src/assets/img/icons/mdi_user-circle-outline.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/mdi_user-circle-outline.png"
+                alt="mon compte"
               />
               <img
                 className={active === 1 ? "" : "d-none"}
-                src="src/assets/img/icons/mdi_user-circle.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/mdi_user-circle.png"
+                alt="mon compte"
               />
             </Link>
           </button>
@@ -46,13 +46,13 @@ function MyNavbar() {
             <Link to="/">
               <img
                 className={active === 2 ? "d-none" : ""}
-                src="src/assets/img/icons/mingcute_home-2-line.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/mingcute_home-2-line.png"
+                alt="home"
               />
               <img
                 className={active === 2 ? "" : "d-none"}
-                src="src/assets/img/icons/mingcute_home-2-fill.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/mingcute_home-2-fill.png"
+                alt="home"
               />
             </Link>
           </button>
@@ -62,13 +62,13 @@ function MyNavbar() {
             <Link to="/qrcode">
               <img
                 className={active === 3 ? "d-none" : ""}
-                src="src/assets/img/icons/mingcute_qrcode-2-line.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/mingcute_qrcode-2-line.png"
+                alt="qrcode"
               />
               <img
                 className={active === 3 ? "" : "d-none"}
-                src="src/assets/img/icons/mingcute_qrcode-2-fill.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/mingcute_qrcode-2-fill.png"
+                alt="qrcode"
               />
             </Link>
           </button>
@@ -78,13 +78,13 @@ function MyNavbar() {
             <Link to="/recherche">
               <img
                 className={active === 4 ? "d-none" : ""}
-                src="src/assets/img/icons/ph_magnifying-glass.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/ph_magnifying-glass.png"
+                alt="recherche"
               />
               <img
                 className={active === 4 ? "" : "d-none"}
-                src="src/assets/img/icons/ph_magnifying-glass-bold.png"
-                alt="tous les cartes"
+                src="/src/assets/img/icons/ph_magnifying-glass-bold.png"
+                alt="recherche"
               />
             </Link>
           </button>

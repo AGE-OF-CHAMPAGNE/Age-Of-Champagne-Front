@@ -15,7 +15,7 @@ function MyHelpClassification({ content }) {
       >
         <div className={classes.help}>?</div>
       </button>
-      <div className={`${classes.popup} ${b ? "" : "d-none"}`}>
+      <div className={`${classes.popup} ${b ? "opacity-100" : "opacity-0"}`}>
         {content}
         <div className={classes.triangle} />
       </div>

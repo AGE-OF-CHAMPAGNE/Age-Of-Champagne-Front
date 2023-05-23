@@ -1,13 +1,15 @@
 .main {
     display: flex;
+    position: relative;
 }
 
 .button {
+    transition: 0.5s;
     border: 0;
     border-radius: 50%;
     height: 16px;
     width: 16px;
-
+    background-color: white;
 }
 
 .help {
@@ -18,10 +20,12 @@
 }
 
 .popup {
+    z-index: 1;
+    transition: 0.5s all;
     position: absolute;
     background: #000000;
     border-radius: 4px;
-    font-size: 8px;
+    font-size: 12px;
     padding: 4px 6px;
     width: max-content;
     max-width: 130px;
@@ -31,7 +35,7 @@
     right: 20px;
 }
 
-.triangle::after {
+.triangle {
     position: absolute;
     top : 6px;
     content: "";
