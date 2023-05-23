@@ -3,6 +3,9 @@
 *{
     font-family: Abel, serif;
 }
+h1 {
+    margin: 0;
+}
 button {
     padding: 0;
     margin: 0;
