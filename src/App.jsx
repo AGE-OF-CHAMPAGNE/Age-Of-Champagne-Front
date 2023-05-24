@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Error from "./pages/Error/Error";
 import Layout from "./components/Layout/Layout";
 import Card from "./pages/Card/Card";
+import Scanner from "./pages/Scanner/Scanner";
 
 function App() {
   const [theme] = useState("dark");
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="cards/:district/:vintage" element={<Card />} />
+          <Route path="qrcode" element={<Scanner />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

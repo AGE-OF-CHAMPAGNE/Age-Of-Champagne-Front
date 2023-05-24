@@ -2,10 +2,6 @@
   display: flex;
   align-items: center;
 }
-
-.page-name {
-  line-height: 100%;
-}
 .name-wrapper {
   display: flex;
   flex-direction: column;
