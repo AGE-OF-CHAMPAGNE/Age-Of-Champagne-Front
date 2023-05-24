@@ -1,93 +1,77 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import classes from "./MyNavbar.module.css";
+import MyNavIcon from "../MyNavIcon/MyNavIcon";
 
 function MyNavbar() {
   const { navbar, links, item } = classes;
-  const [active, setActive] = useState(2);
 
   return (
     <nav className={navbar}>
       <ul className={links} role="menu">
         <li className={item}>
-          <button type="button" onClick={() => setActive(0)}>
-            <Link to="/cards">
-              <img
-                className={active === 0 ? "d-none" : ""}
-                src="/src/assets/img/icons/material-symbols_collections-bookmark-outline.png"
-                alt="tous les cartes"
-              />
-              <img
-                className={active === 0 ? "" : "d-none"}
-                src="/src/assets/img/icons/material-symbols_collections-bookmark-rounded.png"
-                alt="tous les cartes"
-              />
-            </Link>
-          </button>
+          <MyNavIcon
+            to="/cards"
+            imgDisabled={{
+              src: "/src/assets/img/icons/material-symbols_collections-bookmark-outline.png",
+              alt: "tous les cartes",
+            }}
+            imgActive={{
+              src: "/src/assets/img/icons/material-symbols_collections-bookmark-rounded.png",
+              alt: "tous les cartes",
+            }}
+          />
         </li>
         <li className={item}>
-          <button type="button" onClick={() => setActive(1)}>
-            <Link to="/moncompte">
-              <img
-                className={active === 1 ? "d-none" : ""}
-                src="/src/assets/img/icons/mdi_user-circle-outline.png"
-                alt="mon compte"
-              />
-              <img
-                className={active === 1 ? "" : "d-none"}
-                src="/src/assets/img/icons/mdi_user-circle.png"
-                alt="mon compte"
-              />
-            </Link>
-          </button>
+          <MyNavIcon
+            to="/moncompte"
+            imgDisabled={{
+              src: "/src/assets/img/icons/mdi_user-circle-outline.png",
+              alt: "mon compte",
+            }}
+            imgActive={{
+              src: "/src/assets/img/icons/mdi_user-circle.png",
+              alt: "mon compte",
+            }}
+          />
         </li>
         <li className={item}>
-          <button type="button" onClick={() => setActive(2)}>
-            <Link to="/">
-              <img
-                className={active === 2 ? "d-none" : ""}
-                src="/src/assets/img/icons/mingcute_home-2-line.png"
-                alt="home"
-              />
-              <img
-                className={active === 2 ? "" : "d-none"}
-                src="/src/assets/img/icons/mingcute_home-2-fill.png"
-                alt="home"
-              />
-            </Link>
-          </button>
+          <MyNavIcon
+            to="/"
+            imgDisabled={{
+              src: "/src/assets/img/icons/mingcute_home-2-line.png",
+              alt: "home",
+            }}
+            imgActive={{
+              src: "/src/assets/img/icons/mingcute_home-2-fill.png",
+              alt: "home",
+            }}
+          />
         </li>
         <li className={item}>
-          <button type="button" onClick={() => setActive(3)}>
-            <Link to="/qrcode">
-              <img
-                className={active === 3 ? "d-none" : ""}
-                src="/src/assets/img/icons/mingcute_qrcode-2-line.png"
-                alt="qrcode"
-              />
-              <img
-                className={active === 3 ? "" : "d-none"}
-                src="/src/assets/img/icons/mingcute_qrcode-2-fill.png"
-                alt="qrcode"
-              />
-            </Link>
-          </button>
+          <MyNavIcon
+            to="/qrcode"
+            imgDisabled={{
+              src: "/src/assets/img/icons/mingcute_qrcode-2-line.png",
+              alt: "qrcode",
+            }}
+            imgActive={{
+              src: "/src/assets/img/icons/mingcute_qrcode-2-fill.png",
+              alt: "qrcode",
+            }}
+          />
         </li>
         <li className={item}>
-          <button type="button" onClick={() => setActive(4)}>
-            <Link to="/recherche">
-              <img
-                className={active === 4 ? "d-none" : ""}
-                src="/src/assets/img/icons/ph_magnifying-glass.png"
-                alt="recherche"
-              />
-              <img
-                className={active === 4 ? "" : "d-none"}
-                src="/src/assets/img/icons/ph_magnifying-glass-bold.png"
-                alt="recherche"
-              />
-            </Link>
-          </button>
+          <MyNavIcon
+            to="/recherche"
+            imgDisabled={{
+              src: "/src/assets/img/icons/ph_magnifying-glass.png",
+              alt: "recherche",
+            }}
+            imgActive={{
+              src: "/src/assets/img/icons/ph_magnifying-glass-bold.png",
+              alt: "recherche",
+            }}
+          />
         </li>
       </ul>
     </nav>
