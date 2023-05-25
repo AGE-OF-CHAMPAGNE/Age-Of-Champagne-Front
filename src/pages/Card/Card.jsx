@@ -19,7 +19,6 @@ import MyNextButton from "../../components/UI/MyNextButton/MyNextButton";
 function Card() {
   const { district, vintage } = useParams();
   const {
-    "page-name": pageName,
     title,
     "vintage-name": vintageName,
     "district-name": districtName,
@@ -64,7 +63,7 @@ function Card() {
     <div className="container pt-3">
       <section className={title}>
         <MyArrow />
-        <MyPageTitle className={pageName}>Sélectionnez une carte</MyPageTitle>
+        <MyPageTitle>Sélectionnez une carte</MyPageTitle>
       </section>
       <section className="z-1">
         <MySpinningCard

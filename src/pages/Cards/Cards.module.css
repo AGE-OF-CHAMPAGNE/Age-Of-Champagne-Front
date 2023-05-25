@@ -1,0 +1,15 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 44px);
+  gap: 20px;
+}
+@media (min-width: 769px) {
+  .wrapper {
+    gap: 100px;
+  }
+}

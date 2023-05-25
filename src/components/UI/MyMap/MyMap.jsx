@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import LazyLoad from "react-lazyload";
 import classes from "./MyMap.module.css";
 import MySpinner from "../MySpinner/MySpinner";
@@ -10,6 +10,7 @@ function MyMap() {
   const [vintageName, setVintageName] = useState(null);
   const [vintages, setVintages] = useState(null);
   const [loadedMap, setLoadedMap] = useState(0);
+  const MyMapRef = useRef(null);
 
   const handleImageLoad = useCallback(() => {
     setLoadedMap((prevLoadedMap) => prevLoadedMap + 1);
@@ -21,12 +22,23 @@ function MyMap() {
         response
           ? response.map((elem) => ({
               id: elem.vintage.id,
+              district: vintageName,
+              name: elem.vintage.name,
               img: { src: elem.card, alt: elem.vintage.name },
             }))
           : null
       );
     });
   }, [vintageName]);
+
+  useEffect(() => {
+    if (state && state.slice(-5) !== "hover") {
+      document.body.style.overflow = "hidden";
+      MyMapRef.current.scrollIntoView(true);
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [state]);
 
   const {
     img,
@@ -56,7 +68,7 @@ function MyMap() {
   } = classes;
   return (
     <LazyLoad offset={200} once placeholder={<MySpinner active />}>
-      <div className={mymap}>
+      <div ref={MyMapRef} className={mymap}>
         <img
           src="/src/assets/img/map/Carte_rivières et villes 1.jpg"
           alt="Cartes des régions"

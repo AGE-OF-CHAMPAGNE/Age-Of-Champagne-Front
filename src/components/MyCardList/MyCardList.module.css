@@ -5,16 +5,44 @@
   border-radius: 40px;
   overflow: hidden;
 }
-
+.district-name {
+  font-size: 24px;
+  margin: 0;
+  width: max-content;
+}
+.vintage-name {
+  font-size: 20px;
+}
 .mycardlist {
   display: flex;
-  overflow: hidden;
   justify-content: center;
   align-items: center;
   width: 420px;
   height: 411px;
 }
-
+.info {
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  width: 100%;
+  top: 0;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+.info2 {
+  text-align: center;
+  top: 0;
+  color: white;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
 .slider{
   position: relative;
 }
