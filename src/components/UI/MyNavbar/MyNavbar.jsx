@@ -23,7 +23,7 @@ function MyNavbar() {
         </li>
         <li className={item}>
           <MyNavIcon
-            to="/moncompte"
+            to="/user"
             imgDisabled={{
               src: "/src/assets/img/icons/mdi_user-circle-outline.png",
               alt: "mon compte",
