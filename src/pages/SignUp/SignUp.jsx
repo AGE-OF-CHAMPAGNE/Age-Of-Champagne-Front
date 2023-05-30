@@ -8,7 +8,7 @@ import MyForm from "../../components/UI/MyForm/MyForm";
 function SignUp() {
   const { title } = classes;
   return (
-    <div className="container pt-3">
+    <div className="container pt-3 d-grid gap-5">
       <section className={title}>
         <MyArrow />
         <MyPageTitle>Inscription</MyPageTitle>
@@ -16,7 +16,7 @@ function SignUp() {
       <section className="d-flex flex-column align-items-center">
         <MyLogo />
       </section>
-      <section>
+      <section className="d-flex flex-column align-items-center">
         <MyForm
           inputs={[
             {
