@@ -36,7 +36,7 @@ function User() {
         />
         <div className="d-sm-block d-flex flex-column align-items-center">
           <p className={p}>Vous n&apos;avez pas encore de compte</p>
-          <MyButtonLink to="/inscription" className="text-black">
+          <MyButtonLink to="/signup" className="text-black">
             S&apos;Inscrire
           </MyButtonLink>
         </div>
