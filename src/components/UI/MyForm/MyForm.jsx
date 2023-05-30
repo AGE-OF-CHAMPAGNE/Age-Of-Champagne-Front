@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import classes from "./MyForm.module.css";
 
-function MyForm({ inputs, onSubmit }) {
+function MyForm({ inputs, onSubmit, btnName }) {
   const {
     register,
     handleSubmit,
@@ -27,10 +27,12 @@ function MyForm({ inputs, onSubmit }) {
             <input
               className={inputClass}
               type={input.type === "password" ? hidden.type : input.type}
-              {...register(input.label, {
+              {...register(input.name, {
                 required: input.required,
                 pattern: input.pattern,
               })}
+              value={input.value}
+              onChange={input.onChange}
             />
             {input.type === "password" ? (
               <button
@@ -55,16 +57,20 @@ function MyForm({ inputs, onSubmit }) {
               ""
             )}
           </label>
-          {errors[input.label] && <span className={span}>{input.error}</span>}
+          {errors[input.name] && <span className={span}>{input.error}</span>}
         </div>
       ))}
 
       <button className={button} type="submit">
-        Enregistrer
+        {btnName}
       </button>
     </form>
   );
 }
+
+MyForm.defaultProps = {
+  btnName: "Enregistrer",
+};
 
 MyForm.propTypes = {
   inputs: PropTypes.arrayOf(
@@ -88,9 +94,11 @@ MyForm.propTypes = {
       pattern: PropTypes.instanceOf(RegExp),
       error: PropTypes.string,
       value: PropTypes.string,
+      onChange: PropTypes.func,
       minLength: PropTypes.number,
     })
   ).isRequired,
+  btnName: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };
 
