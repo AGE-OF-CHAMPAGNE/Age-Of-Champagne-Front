@@ -1,0 +1,31 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+.p {
+  font-size: 20px;
+  text-align: center;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+} 
+.img {
+  width: 140px;
+}
+
+@media (max-width: 376px) {
+  .p {
+    text-align: left;
+  }
+  .section {
+    flex-direction: column;
+    align-items: center;
+  } 
+}

@@ -39,7 +39,7 @@ function Home() {
         </p>
         <div className="d-flex justify-content-between align-items-center">
           <img src="src/assets/img/cards/cards.png" alt="cards" />
-          <MyButtonLink to="/inscription" className="text-black">
+          <MyButtonLink to="/signup" className="text-black">
             S&apos;Inscrire
           </MyButtonLink>
         </div>
