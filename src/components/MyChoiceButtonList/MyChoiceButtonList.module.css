@@ -1,0 +1,22 @@
+.choiceBtn {
+  color: var(--color);
+  font-size: 20px;
+}
+.choiceBtn::after {
+  content: "";
+  transition: 0.2s all;
+  display: block;
+  width: 0;
+  height: 1px;
+  background-color: var(--color);
+}
+.choiceBtn.active::after {
+  content: "";
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

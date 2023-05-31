@@ -19,10 +19,10 @@ section {
   margin-bottom: 25px;
 }
 #root {
-  margin-bottom: 44px;
+  padding-bottom: 44px;
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 44px);
   background-color: var(--background-color);
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import classes from "./MySlider.module.css";
 
 function MySlider({ name, className, imgs }) {
   const [imgLoad, setImgLoad] = useState(0);
@@ -25,7 +26,7 @@ function MySlider({ name, className, imgs }) {
               src={src}
               className={`d-block w-100 lazy-image ${
                 imgLoad === imgs.length ? "loaded" : ""
-              }`}
+              } ${classes.img}`}
               alt={alt}
             />
           </div>

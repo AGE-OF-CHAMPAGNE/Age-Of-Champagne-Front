@@ -11,6 +11,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 40px;
 }
 
 .img-container {
@@ -45,11 +46,10 @@
 
 .card-img_active {
   transition: 0.5s transform;
-  transform: translateY(80%) rotateY(0deg) rotateZ(0deg) scale(2);
+  transform: translateY(calc(50vh - 100%)) rotateY(0deg) rotateZ(0deg) scale(1.5);
 }
 
 .trajectory {
-  z-index: -1;
   position: inherit;
   box-sizing: border-box;
   border: 1px dashed #FFFFFF;
@@ -175,13 +175,15 @@ input[type=range].input::-moz-range-track {
 .notification-error {
   text-align: center;
   position: absolute;
-  bottom: 15px;
+  bottom: 59px;
   left: 50%;
   transform: translateX(-50%);
   color: white;
 }
-
-@media screen and (max-width: 375px) {
+.card {
+  transform: inherit;
+}
+@media screen and (max-width: 320px) {
   .card {
     transform: scale(0.8);
   }

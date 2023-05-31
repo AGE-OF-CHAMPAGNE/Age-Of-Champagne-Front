@@ -26,6 +26,7 @@ MyButton.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.string,
+    PropTypes.node,
   ]).isRequired,
   className: PropTypes.string,
   color: PropTypes.string,

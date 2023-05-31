@@ -238,7 +238,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .region {
     transition: 0.3s all;
   }

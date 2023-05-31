@@ -5,7 +5,7 @@ import classes from "./MyCardList.module.css";
 import MyCard from "../UI/MyCard/MyCard";
 import ThemeProvider from "../../contexts/theme";
 
-function MyCardList({ className, list, color }) {
+function MyCardList({ className, list, color, nameType }) {
   const {
     item,
     "btn-disabled": btnDisabled,
@@ -13,17 +13,28 @@ function MyCardList({ className, list, color }) {
     square,
     slider,
     light,
+    info,
+    "district-name": districtName,
+    "vintage-name": vintageName,
+    info2,
   } = classes;
   const theme = useContext(ThemeProvider);
   const documentRef = useRef(document);
   const [items, setItems] = useState(null);
   const [active, setActive] = useState(0);
+  const [vintage, setVintage] = useState(null);
+  const [district, setDistrict] = useState(null);
 
   const [dragStartX, setDragStartX] = useState(null);
   const [dragStartScrollLeft, setDragStartScrollLeft] = useState(null);
   const [dx, setDx] = useState(0);
   const [cardScrolled, setCardScrolled] = useState(0);
   const unitToScroll = 50;
+
+  useEffect(() => {
+    setVintage(list[active].name);
+    setDistrict(list[active].district);
+  }, [active, list]);
 
   useEffect(() => {
     if (dx > unitToScroll) {
@@ -90,7 +101,7 @@ function MyCardList({ className, list, color }) {
   }, [items]);
 
   useEffect(() => {
-    if (items) {
+    if (items && items.length > 0) {
       let stt = 0;
       items[active].style.transform = "none";
       items[active].style.zIndex = 1;
@@ -122,6 +133,11 @@ function MyCardList({ className, list, color }) {
     <div
       className={`${className} ${mycardlist} ${theme === "white" ? light : ""}`}
     >
+      <div className={`${nameType === 1 ? info : info2}`}>
+        <p className={districtName}>{district}</p>
+        <p className={vintageName}>{vintage}</p>
+      </div>
+
       <div
         tabIndex="0"
         role="button"
@@ -136,9 +152,16 @@ function MyCardList({ className, list, color }) {
       >
         {list.map((elem, index) => (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <Link key={elem.id} to={index === active ? `/cards/${elem.id}` : "#"}>
+          <Link
+            key={elem.id}
+            to={index === active ? `/cards/${elem.district}/${elem.name}` : "#"}
+          >
             <MyCard
-              onClick={() => setActive(index)}
+              onClick={() => {
+                setActive(index);
+                setVintage(elem.name);
+                setDistrict(elem.district);
+              }}
               className={classes.item}
               img={elem.img}
             />
@@ -169,14 +192,18 @@ function MyCardList({ className, list, color }) {
 MyCardList.defaultProps = {
   className: "",
   color: "#1A1A1A",
+  nameType: 1,
 };
 
 MyCardList.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
+  nameType: PropTypes.oneOf([1, 2]),
   list: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
+      district: PropTypes.string,
+      name: PropTypes.string,
       img: PropTypes.shape({
         src: PropTypes.string,
         alt: PropTypes.string,

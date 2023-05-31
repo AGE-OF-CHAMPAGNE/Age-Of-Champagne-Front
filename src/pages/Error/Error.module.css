@@ -1,0 +1,61 @@
+.error {
+  width: 100%;
+  height: calc(100vh - 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.number {
+  font-weight: bold;
+  color: white;
+  font-size: calc(16px + 20vw);
+}
+.number_1 {
+  animation: color 9s infinite linear;
+}
+.number_2 {
+  animation: color 7s 0.2s infinite linear;
+}
+.number_3 {
+  animation: color 5s 0.4s infinite linear;
+}
+.error-name {
+  text-transform: uppercase;
+  color: var(--color);
+}
+@keyframes color {
+  0% {
+    color: aliceblue;
+  }
+  10% {
+    color: aqua;
+  }
+  20% {
+    color: blue;
+  }
+  30% {
+    color: chocolate;
+  }
+  40% {
+    color: blueviolet;
+  }
+  50% {
+    color: burlywood;
+  }
+  60% {
+    color: darkblue;
+  }
+  70% {
+    color: crimson;
+  }
+  80% {
+    color: skyblue;
+  }
+  90% {
+    color: yellow;
+  }
+  100% {
+    color: white;
+  }
+}

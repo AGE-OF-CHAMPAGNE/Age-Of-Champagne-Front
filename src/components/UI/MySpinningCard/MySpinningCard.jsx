@@ -3,11 +3,6 @@ import PropTypes from "prop-types";
 import MyCard from "../MyCard/MyCard";
 import useTouchMove from "../../../hooks/useTouchMove";
 import classes from "./MySpinningCard.module.css";
-// import getDistrictById from "../../../services/api/district";
-// import {
-//   getVintageById,
-//   getVintageCardById,
-// } from "../../../services/api/vintage";
 
 function MySpinningCard({ mycard, color }) {
   const [angle, setAngle] = useState(0);
@@ -16,26 +11,7 @@ function MySpinningCard({ mycard, color }) {
   const [transform, setTransform] = useState({ x: 148.5, y: 101.25 });
   const [cardActive, setCardActive] = useState(false);
   const [transitionTime, setTransitionTime] = useState(0.1);
-  // const [districtId, setDistrictId] = useState(null);
-  // const [color, setColor] = useState("#FFFFFF");
-  // const [name, setName] = useState("");
-
-  // the card color
-
-  // district id (fetches from page)
-  // useEffect(() => {
-  //   getVintageById(id).then(({ district, name }) => {
-  //     const districtArray = district.split("/");
-  //     setName(name);
-  //     setDistrictId(parseInt(districtArray[districtArray.length - 1], 10));
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getDistrictById(districtId).then(({ color_code: colorCode }) => {
-  //     setColor(`#${colorCode}`);
-  //   });
-  // }, [districtId]);
+  const MySpinningCardRef = useRef(null);
 
   // css classes
   const {
@@ -64,6 +40,15 @@ function MySpinningCard({ mycard, color }) {
 
   // screen touch coordinates
   const { x, prevX } = useTouchMove(imageRef, !cardActive);
+
+  useEffect(() => {
+    if (cardActive) {
+      document.body.style.overflow = "hidden";
+      MySpinningCardRef.current.scrollIntoView(false);
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [cardActive]);
 
   useEffect(() => {
     let val;
@@ -171,7 +156,7 @@ function MySpinningCard({ mycard, color }) {
   const backCardImgDisabled = {
     transition: `${transitionTime}s transform`,
     transform:
-      "translateY(80%) rotateY(0deg) rotateZ(0deg) scale(2) scaleX(-1)",
+      "translateY(calc(50vh - 100%)) rotateY(0deg) rotateZ(0deg) scale(1.5) scaleX(-1)",
     zIndex: angle > 90 || angle < -90 ? 2 : -1,
   };
 
@@ -183,7 +168,7 @@ function MySpinningCard({ mycard, color }) {
   };
 
   return (
-    <div className={cardContainer}>
+    <div ref={MySpinningCardRef} className={cardContainer}>
       <div className={card}>
         <div
           ref={imageRef}
@@ -215,20 +200,6 @@ function MySpinningCard({ mycard, color }) {
           />
         </div>
         <div className={inputContainer}>
-          <input
-            className={input}
-            onChange={(e) => {
-              if (!cardActive) {
-                setValue(e.target.value);
-              }
-            }}
-            type="range"
-            name="volume"
-            min="0"
-            value={value}
-            step="1"
-            max="180"
-          />
           <div className={trajectory}>
             <div
               style={{
@@ -247,6 +218,20 @@ function MySpinningCard({ mycard, color }) {
               </div>
             </div>
           </div>
+          <input
+            className={input}
+            onChange={(e) => {
+              if (!cardActive) {
+                setValue(e.target.value);
+              }
+            }}
+            type="range"
+            name="volume"
+            min="0"
+            value={value}
+            step="1"
+            max="180"
+          />
         </div>
       </div>
       <div
