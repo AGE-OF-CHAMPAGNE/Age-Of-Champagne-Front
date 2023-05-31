@@ -10,6 +10,7 @@ import Scanner from "./pages/Scanner/Scanner";
 import Cards from "./pages/Cards/Cards";
 import User from "./pages/User/User";
 import SignUp from "./pages/SignUp/SignUp";
+import LogIn from "./pages/LogIn/LogIn";
 
 function App() {
   const [theme] = useState("dark");
@@ -24,6 +25,7 @@ function App() {
           <Route path="cards" element={<Cards />} />
           <Route path="user" element={<User />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<LogIn />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
