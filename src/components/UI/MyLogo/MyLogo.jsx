@@ -7,10 +7,10 @@ function MyLogo({ className }) {
 
   return (
     <div className={`${logo} ${className}`}>
-      <img src="src/assets/img/icons/logo/Subtract.png" alt="AOC" />
+      <img src="/src/assets/img/icons/logo/Subtract.png" alt="AOC" />
       <img
         className={circle}
-        src="src/assets/img/icons/logo/Intersect.png"
+        src="/src/assets/img/icons/logo/Intersect.png"
         alt="circle"
       />
     </div>

@@ -11,4 +11,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  text-decoration: underline;
+}
+.signup {
+  gap: 10vh;
 }

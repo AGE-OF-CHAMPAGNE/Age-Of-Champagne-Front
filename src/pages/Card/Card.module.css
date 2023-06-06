@@ -60,14 +60,21 @@
   left: calc(50% - 83px);
 }
 .next {
+  opacity: 1;
+  transition: 0.2s opacity;
   position: fixed !important;
   bottom: 59px;
   left: calc(50% + 109px);
 }
 /* 50% - 22.5px + 83px + 24px */
 .prev {
+  opacity: 1;
+  transition: 0.2s opacity;
   transform: rotate(180deg);
   position: fixed !important;
   bottom: 59px;
   left: calc(50% - 153px);
+}
+.disabled {
+  opacity: 0;
 }

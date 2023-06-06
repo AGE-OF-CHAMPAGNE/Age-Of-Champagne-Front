@@ -1,21 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import classes from "./SignUp.module.css";
 import MyArrow from "../../components/UI/MyArrow/MyArrow";
 import MyPageTitle from "../../components/UI/MyPageTitle/MyPageTitle";
 import MyLogo from "../../components/UI/MyLogo/MyLogo";
 import MyForm from "../../components/UI/MyForm/MyForm";
-import { registration } from "../../services/api/user";
+import { loginUrl, emailExists } from "../../services/api/user";
 
 function SignUp() {
-  const { title, link, p } = classes;
-  const [ok, setOk] = useState(null);
+  const { title, link, p, signup } = classes;
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pseudonyme, setPseudonyme] = useState("");
 
+  const handleSubmit = async (data) => {
+    emailExists(data.email).then((response) => {
+      if (response) {
+        setError("Cet e-mail existe déjà");
+      } else {
+        console.log(data);
+      }
+    });
+  };
+
   return (
-    <div className="container pt-3 d-grid gap-5">
+    <div className={`container pt-3 d-grid ${signup}`}>
       <section className={title}>
         <MyArrow />
         <MyPageTitle>Inscription</MyPageTitle>
@@ -24,7 +35,7 @@ function SignUp() {
         <MyLogo />
       </section>
       <section className="d-flex flex-column align-items-center">
-        {ok || <p />}
+        {error && <div className="alert alert-danger">{error}</div>}
         <MyForm
           inputs={[
             {
@@ -67,29 +78,26 @@ function SignUp() {
               value: password,
             },
           ]}
-          onSubmit={async (data) => {
-            const response = await registration({
-              email: data.email,
-              password: data.password,
-              firstname: data.firstname,
-              lastname: data.firstname,
-              Vintages: [],
-              wantSeeDYK: true,
-              DYKs: [],
-            });
-            if (response.statusText === "Created") {
-              setOk(<p className="text-success">Vous êtes inscrit(e)</p>);
-              setPassword("");
-              setEmail("");
-              setPseudonyme("");
-            } else {
-              setOk(<p className="text-warning">Cet Email est déjà utilisé</p>);
-            }
-          }}
+          // const response = await registration({
+          //   email: data.email,
+          //   password: data.password,
+          //   firstname: data.firstname,
+          //   lastname: data.firstname,
+          //   Vintages: [],
+          //   wantSeeDYK: true,
+          //   DYKs: [],
+          // });
+          // if (response.statusText === "Created") {
+          //   setPassword("");
+          //   setEmail("");
+          //   setPseudonyme("");
+          // }
+
+          onSubmit={(data) => handleSubmit(data)}
         />
       </section>
       <section className="d-flex flex-column align-items-center">
-        <Link className={`${link} ${p}`} to="/login">
+        <Link className={`${link} ${p}`} to={loginUrl()}>
           Se connecter
         </Link>
       </section>

@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classes from "./MyNextButton.module.css";
 
-function MyNextButton({ to, className, color }) {
-  const { circle, link, line, bot, top } = classes;
+function MyNextButton({ to, className, color, onClick, disabled }) {
+  const { circle, link, line, bot, top, cursor } = classes;
   const [clicked, setClicked] = useState(false);
 
   return (
-    <div
+    <button
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
       className={`${className} ${circle} `}
       style={{
         border: `1px solid ${color}`,
@@ -16,8 +19,9 @@ function MyNextButton({ to, className, color }) {
       }}
     >
       <Link
-        className={link}
+        className={`${link} ${disabled ? cursor : ""}`}
         to={to}
+        style={disabled ? { pointerEvents: "none" } : {}}
         onMouseLeave={() => setClicked(false)}
         onMouseEnter={() => setClicked(true)}
       >
@@ -30,7 +34,7 @@ function MyNextButton({ to, className, color }) {
           style={{ backgroundColor: clicked ? "black" : color }}
         />
       </Link>
-    </div>
+    </button>
   );
 }
 
@@ -38,12 +42,16 @@ MyNextButton.defaultProps = {
   to: "/",
   className: "",
   color: "white",
+  onClick: () => {},
+  disabled: false,
 };
 
 MyNextButton.propTypes = {
   to: PropTypes.string,
   className: PropTypes.string,
   color: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 export default MyNextButton;

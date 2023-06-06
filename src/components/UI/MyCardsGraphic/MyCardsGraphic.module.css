@@ -61,7 +61,7 @@
     top: 40px
 }
 
-@media (max-width: 321px) {
+@media (max-width: 375px) {
     .wrapper {
         left: calc(50% - 86px);
     }
@@ -78,7 +78,8 @@
         top: 60px
     }
     .map_legend {
-        align-items: center;
-        margin-right: 300px;
+        width: max-content;
+        transform: translateX(-100%);
+        margin: auto;
     }
 }

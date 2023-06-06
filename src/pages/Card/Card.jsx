@@ -6,6 +6,7 @@ import MyArrow from "../../components/UI/MyArrow/MyArrow";
 import { getDistrictByName } from "../../services/api/district";
 import {
   getVintageByName,
+  getVintageNeighboursById,
   getVintageCardById,
 } from "../../services/api/vintage";
 import MySpinningCard from "../../components/UI/MySpinningCard/MySpinningCard";
@@ -15,6 +16,8 @@ import MySpecificationList from "../../components/MySpecifiationList/MySpecifica
 import MyGrapesVarietiesList from "../../components/MyGrapesVarietiesList/MyGrapesVarietiesList";
 import MyButtonLink from "../../components/UI/MyButtonLink/MyButtonLink";
 import MyNextButton from "../../components/UI/MyNextButton/MyNextButton";
+import getIdFromUrl from "../../services/transformers/getIdFromUrl";
+import MySpinner from "../../components/UI/MySpinner/MySpinner";
 
 function Card() {
   const { district, vintage } = useParams();
@@ -32,32 +35,88 @@ function Card() {
     btn,
     next,
     prev,
+    disabled,
   } = classes;
-  const [color, setColor] = useState("#FFFFFF");
+  const [color, setColor] = useState(null);
   const [vintageId, setVintageId] = useState(null);
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
+  const [myCard, setMyCard] = useState(null);
   const [vintageType, setVintageType] = useState(null);
-  const [spList, setSpList] = useState([0.0, 0.0, 0.0]);
+  const [spList, setSpList] = useState(null);
+  const [grapeList, setGrapeList] = useState(null);
+  const [prevCard, setPrevCard] = useState(null);
+  const [nextCard, setNextCard] = useState(null);
 
   useEffect(() => {
-    getVintageByName(vintage).then((response) => {
-      setVintageId(response.id);
-      setSpList([response.size, response.longitude, response.latitude]);
-      const arr = response.vintage_type.split("/");
-      setVintageType(arr[arr.length - 1]);
-    });
-  }, [vintage]);
-
-  useEffect(() => {
+    if (vintageId) {
+      getVintageNeighboursById(vintageId).then((response) => {
+        setPrevCard(
+          response && response.prev
+            ? `/cards/${response.prev.district.name}/${response.prev.vintage.name}`
+            : null
+        );
+        setNextCard(
+          response && response.next
+            ? `/cards/${response.next.district.name}/${response.next.vintage.name}`
+            : null
+        );
+      });
+    }
     setImg(getVintageCardById(vintageId));
   }, [vintageId]);
 
   useEffect(() => {
+    getVintageByName(vintage).then((response) => {
+      setVintageId(response.id);
+      setSpList([
+        {
+          title: "Superficie (ha)",
+          number: response.size,
+          color: `${color}1D`,
+        },
+        { title: "Longitude", number: response.longitude, color: `${color}1D` },
+        { title: "Latitude", number: response.latitude, color: `${color}1D` },
+      ]);
+      setGrapeList([
+        {
+          title: "Chardonnay",
+          imgPath: "/src/assets/img/icons/goldGrape.png",
+          color: "250,189,40",
+          number: response.chardonnay,
+        },
+        {
+          title: "Meunier",
+          imgPath: "/src/assets/img/icons/purpleGrape.png",
+          color: "54,124,192",
+          number: response.meunier,
+        },
+        {
+          title: "Pinot Noir",
+          imgPath: "/src/assets/img/icons/blackGrape.png",
+          color: "255, 2555,255",
+          number: response.pinot_noir,
+        },
+      ]);
+      const id = getIdFromUrl(response.vintage_type);
+      setVintageType(id);
+    });
+  }, [vintage]);
+
+  useEffect(() => {
     district.replace("%20", " ");
     getDistrictByName(district).then(({ color_code: colorCode }) => {
-      setColor(`#${colorCode}`);
+      setColor(colorCode);
     });
   }, [district]);
+
+  useEffect(() => {
+    if (color && vintage && img) {
+      setMyCard({
+        color,
+        data: { img: { src: img, alt: vintage } },
+      });
+    }
+  }, [color, img]);
 
   return (
     <div className="container pt-3">
@@ -66,10 +125,13 @@ function Card() {
         <MyPageTitle>Sélectionnez une carte</MyPageTitle>
       </section>
       <section className="z-1">
-        <MySpinningCard
-          color={color}
-          mycard={{ img: { src: img, alt: vintage } }}
-        />
+        {myCard ? (
+          <MySpinningCard color={myCard.color} mycard={myCard.data} />
+        ) : (
+          <div style={{ height: "354px" }}>
+            <MySpinner active text="Chargement de carte" />
+          </div>
+        )}
       </section>
       <section className="d-flex justify-content-between align-items-center">
         <div className={nameWrapper}>
@@ -99,19 +161,30 @@ function Card() {
       </section>
       <section>
         <span className={subtitle}>Spécifications</span>
-        {/*  <MySpecificationList list={spList} /> */}
-        <MySpecificationList list={[2.2, 2.2, 2.2]} />
+        {spList ? <MySpecificationList list={spList} /> : ""}
       </section>
       <section>
         <span className={subtitle}>Répartition De Cépage</span>
-        <MyGrapesVarietiesList />
+        {grapeList ? <MyGrapesVarietiesList list={grapeList} /> : ""}
       </section>
       <section className="pt-3 pb-3">
-        <MyNextButton className={prev} to="/" color={color} />
+        <MyNextButton
+          className={`${prev} ${prevCard ? "" : disabled}`}
+          disabled={!prevCard}
+          onClick={() => setMyCard(null)}
+          to={prevCard}
+          color={color}
+        />
         <MyButtonLink color={color} className={btn} to="/">
           En Savoir +
         </MyButtonLink>
-        <MyNextButton className={next} to="/" color={color} />
+        <MyNextButton
+          className={`${next} ${nextCard ? "" : disabled}`}
+          disabled={!nextCard}
+          onClick={() => setMyCard(null)}
+          to={nextCard}
+          color={color}
+        />
       </section>
     </div>
   );
