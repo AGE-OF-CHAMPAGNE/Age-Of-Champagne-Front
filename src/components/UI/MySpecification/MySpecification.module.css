@@ -1,7 +1,5 @@
 .main {
-    background: linear-gradient(180deg,
-    rgba(239, 224, 117, 0.2) 0%,
-    rgba(239, 224, 117, 0) 100%);
+    transition: 0.5s all;
     color: var(--color);
     width: 89px;
     height: 33px;

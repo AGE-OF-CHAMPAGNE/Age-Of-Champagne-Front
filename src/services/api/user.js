@@ -1,43 +1,56 @@
 /* eslint-disable no-console */
-import BASE_URL, { LOGIN_URL } from "./url";
+import BASE_URL, { LOGIN_URL, LOGOUT_URL } from "./url";
 
 export function getMe() {
-  return fetch(`${BASE_URL}/me`)
-    .then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      }
-      const error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    })
-    .then((response) => response.json())
-    .catch((e) => {
-      console.log(`Error: ${e.message}`);
-      console.log(e.response);
-    });
+  return fetch(`${BASE_URL}/me`, {
+    method: "GET",
+    credentials: "include",
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    return null;
+  });
 }
-export function login(data) {
-  return fetch(`${LOGIN_URL}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Request error");
-      }
-      return response;
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+
+export async function emailExists(emailToVerify) {
+  if (!emailToVerify) {
+    throw new Error("Email is required");
+  }
+
+  try {
+    const response = await fetch(`${BASE_URL}/users`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const users = await response.json();
+    const isEmailExists = users.some(({ email }) => email === emailToVerify);
+    return isEmailExists;
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    throw error;
+  }
 }
+
+export function getBenefitDateByBenefitId(id, usedBenefitDate) {
+  usedBenefitDate.forEach((element) => {
+    let date = null;
+    if (element.benefit_id === id) {
+      date = element.date;
+    }
+    return date;
+  });
+}
+
+export function loginUrl() {
+  return `${LOGIN_URL}?redirect=${encodeURIComponent(window.location)}`;
+}
+
+export function logoutUrl() {
+  return `${LOGOUT_URL}?redirect=${encodeURIComponent(loginUrl())}`;
+}
+
 export async function registration(data) {
   const r = await fetch(`${BASE_URL}/users`, {
     method: "POST",

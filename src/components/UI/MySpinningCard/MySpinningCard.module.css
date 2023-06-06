@@ -60,14 +60,24 @@
 
 .circle {
   position: relative;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.5s;
   border-radius: 50%;
   width: 45px;
   height: 45px;
   top: 20px;
   left: -10px;
 }
-
+.animation {
+  animation: 0.9s opacity-animation;
+}
+@keyframes opacity-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .arrow {
   position: absolute;
   top: 0;

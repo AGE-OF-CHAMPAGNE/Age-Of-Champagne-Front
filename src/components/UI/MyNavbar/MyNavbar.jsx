@@ -62,7 +62,7 @@ function MyNavbar() {
         </li>
         <li className={item}>
           <MyNavIcon
-            to="/recherche"
+            to="/search"
             imgDisabled={{
               src: "/src/assets/img/icons/ph_magnifying-glass.png",
               alt: "recherche",

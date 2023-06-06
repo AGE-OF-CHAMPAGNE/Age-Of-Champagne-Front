@@ -1,0 +1,27 @@
+.benefitItem, .benefitTitle, .benefitDate, .benefitDesc {
+  color: var(--color);
+}
+.benefitItem {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.benefitTitle {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.benefitDate {
+  font-size: 14px;
+}
+.benefitDesc {
+  font-size: 16px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}

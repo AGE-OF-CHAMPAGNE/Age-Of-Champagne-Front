@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 import BASE_URL from "./url";
+import { getDistrictById } from "./district";
+import getIdFromUrl from "../transformers/getIdFromUrl";
 
 export function getAllVintages() {
   return fetch(`${BASE_URL}/vintages`)
@@ -110,4 +112,44 @@ export function getVintagesByDistrictName(name) {
       console.log(`Error: ${e.message}`);
       console.log(e.response);
     });
+}
+
+export async function getVintageNeighboursById(id) {
+  const vintages = await getAllVintages();
+  const myVintageIndex = vintages.findIndex((elem) => elem.id === id);
+  if (myVintageIndex >= 0) {
+    let prevDistrict;
+    let nextDistrict;
+    let prev;
+    let next;
+
+    if (myVintageIndex - 1 >= 0) {
+      prevDistrict = await getDistrictById(
+        getIdFromUrl(vintages[myVintageIndex - 1].district)
+      );
+      prev = {
+        vintage: vintages[myVintageIndex - 1],
+        district: prevDistrict,
+      };
+    } else {
+      prevDistrict = null;
+      prev = null;
+    }
+    if (myVintageIndex + 1 < vintages.length) {
+      nextDistrict = await getDistrictById(
+        getIdFromUrl(vintages[myVintageIndex + 1].district)
+      );
+
+      next = { vintage: vintages[myVintageIndex + 1], district: nextDistrict };
+    } else {
+      nextDistrict = null;
+      next = null;
+    }
+
+    return {
+      prev,
+      next,
+    };
+  }
+  return null;
 }

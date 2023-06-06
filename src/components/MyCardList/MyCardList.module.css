@@ -7,6 +7,7 @@
 }
 .district-name {
   font-size: 24px;
+  align-self: center;
   margin: 0;
   width: max-content;
 }

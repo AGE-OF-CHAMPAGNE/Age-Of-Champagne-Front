@@ -12,6 +12,7 @@ function MySpinningCard({ mycard, color }) {
   const [cardActive, setCardActive] = useState(false);
   const [transitionTime, setTransitionTime] = useState(0.1);
   const MySpinningCardRef = useRef(null);
+  const [animated, setAnimated] = useState(false);
 
   // css classes
   const {
@@ -33,7 +34,12 @@ function MySpinningCard({ mycard, color }) {
     "card-img_active": cardImgActive,
     "notification-error": notificationError,
     "card-container": cardContainer,
+    animation,
   } = classes;
+
+  useEffect(() => {
+    setAnimated(false);
+  }, [mycard]);
 
   // img-container DOMElement
   const imageRef = useRef(null);
@@ -190,10 +196,14 @@ function MySpinningCard({ mycard, color }) {
           <MyCard
             img={{ src: mycard.img.src, alt: mycard.img.alt }}
             style={cardActive ? {} : cardImgDisabled}
-            className={`${cardImg} ${cardActive ? cardImgActive : ""}`}
+            className={`${cardImg} ${animated ? animation : ""} ${
+              cardActive ? cardImgActive : ""
+            }`}
           />
           <img
-            className={`${cardImg} position-absolute top-0 start-0`}
+            className={`${cardImg} ${animated ? animation : ""} ${
+              animated ? animation : ""
+            } position-absolute top-0 start-0`}
             style={cardActive ? backCardImgDisabled : backCardImgActive}
             src="/src/assets/img/storybook/image 14.png"
             alt="dos de la carte"

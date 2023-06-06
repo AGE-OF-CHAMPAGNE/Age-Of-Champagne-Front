@@ -6,19 +6,26 @@ import MySpecification from "../UI/MySpecification/MySpecification";
 function MySpecificationsList({ list }) {
   return (
     <div className={classes.spList}>
-      <MySpecification title="Superficie (ha)" number={list[0]} />
-      <MySpecification title="Longitude" number={list[1]} />
-      <MySpecification title="Latitude" number={list[2]} />
+      {list.map(({ title, number, color }) => (
+        <MySpecification
+          key={title}
+          color={color}
+          title={title}
+          number={number}
+        />
+      ))}
     </div>
   );
 }
 
-MySpecificationsList.defaultProps = {
-  list: [],
-};
-
 MySpecificationsList.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.number),
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      number: PropTypes.number,
+      color: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default MySpecificationsList;

@@ -5,7 +5,9 @@
   border-radius: 100%;
   border: 1px solid white;
 }
-
+.cursor {
+  cursor: alias;
+}
 .link {
   display: block;
   width: 100%;

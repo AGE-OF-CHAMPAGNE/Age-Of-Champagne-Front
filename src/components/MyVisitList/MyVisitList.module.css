@@ -1,0 +1,12 @@
+.benefitList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+}
+.item {
+  flex-shrink: 0;
+  height: 550px;
+  justify-content: space-between;
+  gap: 0;
+}
