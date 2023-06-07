@@ -11,10 +11,17 @@ import Cards from "./pages/Cards/Cards";
 import User from "./pages/User/User";
 import SignUp from "./pages/SignUp/SignUp";
 import UserProvider from "./contexts/user/UserProvider";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
-  const [theme] = useState("dark");
-
+  const [theme, setTheme] = useState("dark");
+  const changeTheme = () => {
+    if (theme === "dark") {
+      setTheme("white");
+    } else {
+      setTheme("dark");
+    }
+  };
   return (
     <UserProvider>
       <ThemeProvider value={theme}>
@@ -26,6 +33,10 @@ function App() {
             <Route path="cards" element={<Cards />} />
             <Route path="user" element={<User />} />
             <Route path="signup" element={<SignUp />} />
+            <Route
+              path="settings"
+              element={<Settings changeTheme={changeTheme} />}
+            />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

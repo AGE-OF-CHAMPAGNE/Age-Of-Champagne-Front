@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import classes from "./MyForm.module.css";
 
-function MyForm({ inputs, onSubmit, btnName }) {
+function MyForm({ inputs, onSubmit, btnName, className }) {
   const {
     register,
     handleSubmit,
@@ -19,7 +19,7 @@ function MyForm({ inputs, onSubmit, btnName }) {
   const { label, inputClass, img, button, form, wrapper, span } = classes;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={`${form} ${className}`}>
       {inputs.map((input) => (
         <div key={input.label} className={wrapper}>
           <label htmlFor={input.label} className={label}>
@@ -57,7 +57,13 @@ function MyForm({ inputs, onSubmit, btnName }) {
               ""
             )}
           </label>
-          {errors[input.name] && <span className={span}>{input.error}</span>}
+          <span
+            className={`${span} ${
+              errors[input.name] ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {input.error}
+          </span>
         </div>
       ))}
 
@@ -70,6 +76,7 @@ function MyForm({ inputs, onSubmit, btnName }) {
 
 MyForm.defaultProps = {
   btnName: "Enregistrer",
+  className: "",
 };
 
 MyForm.propTypes = {
@@ -100,6 +107,7 @@ MyForm.propTypes = {
   ).isRequired,
   btnName: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 export default MyForm;

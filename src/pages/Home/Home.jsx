@@ -23,8 +23,8 @@ function Home() {
   } = classes;
 
   return (
-    <>
-      <section className="container">
+    <div className="container pt-3">
+      <section>
         <MyLogo className={logo} />
         <MyTitle>Bienvenue</MyTitle>
         <p className={text}>
@@ -63,7 +63,7 @@ function Home() {
         />
       </section>
 
-      <section className="container">
+      <section>
         <MyTitle>Fonctionnement</MyTitle>
         <MyInstruction
           title="Commencez Le Jeu"
@@ -106,7 +106,7 @@ function Home() {
         />
       </section>
 
-      <section className="container">
+      <section>
         <MyTitle>Qu’est-ce que Age Of Champagne?</MyTitle>
         <div className={pWrapper}>
           <img src="src/assets/img/icons/image.png" alt="aoc" />
@@ -132,7 +132,7 @@ function Home() {
         </div>
       </section>
 
-      <section className={`container ${rulesSection}`}>
+      <section className={rulesSection}>
         <MyTitle>Règles du jeu</MyTitle>
         <div className="d-flex justify-content-center align-items-center gap-3">
           <img src="src/assets/img/icons/3D.png" alt="fille" />
@@ -148,7 +148,7 @@ function Home() {
         </div>
       </section>
 
-      <section className={`container ${classes.topthreeBg}`}>
+      <section className={classes.topthreeBg}>
         <h1 className="display-2 text-white text-center">TOP 3 VIGNOBLES</h1>
         <MyVignobleCardList
           cards={[
@@ -168,10 +168,10 @@ function Home() {
         />
       </section>
 
-      <section className="container">
+      <section>
         <MyMap />
       </section>
-    </>
+    </div>
   );
 }
 

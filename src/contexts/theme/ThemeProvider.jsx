@@ -10,11 +10,13 @@ function ThemeProvider({ value, children }) {
       root.current.style.setProperty("--color", "black");
       root.current.style.setProperty("--background-color", "white");
       root.current.style.setProperty("--red-color", "#9A0A06");
+      root.current.style.setProperty("--black-color", "#1D1D1D");
     }
     if (value === "dark") {
       root.current.style.setProperty("--color", "white");
-      root.current.style.setProperty("--background-color", "black");
+      root.current.style.setProperty("--background-color", "#252525");
       root.current.style.setProperty("--red-color", "#FF3838");
+      root.current.style.setProperty("--black-color", "#1D1D1D");
     }
   }, [value]);
   return (
