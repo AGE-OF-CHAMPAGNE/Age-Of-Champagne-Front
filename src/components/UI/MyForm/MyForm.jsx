@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import classes from "./MyForm.module.css";
+import ThemeContext from "../../../contexts/theme";
 
 function MyForm({ inputs, onSubmit, btnName, className }) {
   const {
@@ -11,21 +12,49 @@ function MyForm({ inputs, onSubmit, btnName, className }) {
     formState: { errors },
   } = useForm();
 
+  const theme = useContext(ThemeContext);
+
   const [hidden, setHidden] = useState({
     type: "password",
-    img: "/src/assets/img/icons/ph_eye-closed.png",
+    img:
+      theme === "dark"
+        ? "/src/assets/img/icons/eyes/light/ph_eye-closed.png"
+        : "/src/assets/img/icons/eyes/dark/ph_eye-closed.png",
   });
 
-  const { label, inputClass, img, button, form, wrapper, span } = classes;
+  useEffect(() => {
+    setHidden({
+      type: "password",
+      img:
+        theme === "dark"
+          ? "/src/assets/img/icons/eyes/light/ph_eye-closed.png"
+          : "/src/assets/img/icons/eyes/dark/ph_eye-closed.png",
+    });
+  }, [theme]);
+
+  const {
+    label,
+    inputClass,
+    lightInput,
+    lightLabel,
+    img,
+    button,
+    form,
+    wrapper,
+    span,
+  } = classes;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={`${form} ${className}`}>
       {inputs.map((input) => (
         <div key={input.label} className={wrapper}>
-          <label htmlFor={input.label} className={label}>
+          <label
+            htmlFor={input.label}
+            className={`${label} ${theme === "dark" ? "" : lightLabel}`}
+          >
             {input.label}
             <input
-              className={inputClass}
+              className={`${inputClass} ${theme === "dark" ? "" : lightInput}`}
               type={input.type === "password" ? hidden.type : input.type}
               {...register(input.name, {
                 required: input.required,
@@ -42,11 +71,17 @@ function MyForm({ inputs, onSubmit, btnName, className }) {
                     hidden.type === "password"
                       ? {
                           type: "text",
-                          img: "/src/assets/img/icons/ic_sharp-remove-red-eye.png",
+                          img:
+                            theme === "dark"
+                              ? "/src/assets/img/icons/eyes/light/ic_sharp-remove-red-eye.png"
+                              : "/src/assets/img/icons/eyes/dark/ic_sharp-remove-red-eye.png",
                         }
                       : {
                           type: "password",
-                          img: "/src/assets/img/icons/ph_eye-closed.png",
+                          img:
+                            theme === "dark"
+                              ? "/src/assets/img/icons/eyes/light/ph_eye-closed.png"
+                              : "/src/assets/img/icons/eyes/dark/ph_eye-closed.png",
                         }
                   )
                 }

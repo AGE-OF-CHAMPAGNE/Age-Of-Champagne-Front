@@ -52,3 +52,11 @@
   display: inline-block;
   width: 292px;
 }
+.lightInput {
+  background: #ebebeb;
+  color: rgb(0, 0, 0);
+}
+
+.lightLabel {
+  color: rgba(0, 0, 0, 0.7);
+}

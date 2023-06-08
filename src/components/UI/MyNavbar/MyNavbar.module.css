@@ -17,3 +17,6 @@
 .item {
   position: relative;
 }
+.lightNavbar {
+  background-color: var(--light-color);
+}

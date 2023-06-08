@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import ThemeProvider from "./contexts/theme/ThemeProvider";
 import "./App.css";
@@ -15,13 +15,23 @@ import Settings from "./pages/Settings/Settings";
 
 function App() {
   const [theme, setTheme] = useState("dark");
+
   const changeTheme = () => {
     if (theme === "dark") {
+      localStorage.setItem("theme", "white");
       setTheme("white");
     } else {
+      localStorage.setItem("theme", "dark");
       setTheme("dark");
     }
   };
+  useEffect(() => {
+    const data = localStorage.getItem("theme");
+    if (data) {
+      setTheme(data);
+    }
+  }, []);
+
   return (
     <UserProvider>
       <ThemeProvider value={theme}>

@@ -1,21 +1,23 @@
-import React, { useCallback } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MyButton from "../MyButton/MyButton";
 import classes from "./MyArrow.module.css";
+import ThemeContext from "../../../contexts/theme";
 
 function MyArrow() {
+  const theme = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const goBack = useCallback(() => navigate(-1), []);
+  const goBack = () => navigate(-1);
 
   return (
     <MyButton onClick={goBack} className={classes.button} color="transparent">
       <FontAwesomeIcon
         icon={faArrowLeft}
         size="xl"
-        style={{ color: "#ffffff" }}
+        style={{ color: "var(--color)" }}
       />
     </MyButton>
   );

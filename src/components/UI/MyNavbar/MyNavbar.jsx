@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import classes from "./MyNavbar.module.css";
 import MyNavIcon from "../MyNavIcon/MyNavIcon";
+import ThemeContext from "../../../contexts/theme";
 
 function MyNavbar() {
-  const { navbar, links, item } = classes;
+  const { navbar, links, item, lightNavbar } = classes;
+  const theme = useContext(ThemeContext);
 
   return (
-    <nav className={navbar}>
+    <nav className={`${navbar} ${theme === "dark" ? "" : lightNavbar}`}>
       <ul className={links} role="menu">
         <li className={item}>
           <MyNavIcon

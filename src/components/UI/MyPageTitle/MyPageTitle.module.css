@@ -2,11 +2,5 @@
   line-height: 100%;
   width: 100%;
   text-align: center;
-  color: white;
-}
-
-/* light theme */
-
-.light {
-  color: black;
+  color: var(--color);
 }

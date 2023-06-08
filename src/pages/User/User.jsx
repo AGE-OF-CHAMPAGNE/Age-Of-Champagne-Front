@@ -14,14 +14,15 @@ import { getRecipientById } from "../../services/api/recipient";
 import { getBenefitDateByBenefitId } from "../../services/api/user";
 import MyVisitList from "../../components/MyVisitList/MyVisitList";
 import MySpinner from "../../components/UI/MySpinner/MySpinner";
+import ThemeContext from "../../contexts/theme";
 
 function User() {
   const { title, wrapper, p, section, img, lastname, member, visitWrapper } =
     classes;
-  const imgSettings = {
-    src: "/src/assets/img/icons/mdi_gear.png",
+  const [imgSettings, setImgSettings] = useState({
+    src: "/src/assets/img/icons/gear/light/mdi_gear.png",
     alt: "configuration",
-  };
+  });
   const [benefits, setBenefits] = useState(null);
   const [graphicData, setGraphicData] = useState({
     scaned: 0,
@@ -29,6 +30,17 @@ function User() {
   });
 
   const user = useContext(UserContext);
+  const theme = useContext(ThemeContext);
+
+  useEffect(() => {
+    setImgSettings({
+      src:
+        theme === "dark"
+          ? "/src/assets/img/icons/gear/light/mdi_gear.png"
+          : "/src/assets/img/icons/gear/dark/mdi_gear.png",
+      alt: "configuration",
+    });
+  }, [theme]);
 
   useEffect(() => {
     if (user) {

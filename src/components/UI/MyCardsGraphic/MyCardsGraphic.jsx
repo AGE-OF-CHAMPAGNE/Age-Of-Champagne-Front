@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import PropTypes from "prop-types";
 import classes from "./MyCardsGraphic.module.css";
+import ThemeContext from "../../../contexts/theme";
 
 function MyCardsGraphic({ data, className }) {
   const COLORS = ["#FABD62", "#2171AD"];
-
+  const theme = useContext(ThemeContext);
   return (
     <div className={`${classes.main} ${className}`}>
       <div className={classes.map_legend}>
@@ -26,7 +27,11 @@ function MyCardsGraphic({ data, className }) {
         alt="many game cards"
       />
       <div className={classes.wrapper}>
-        <div className={classes.number_div}>
+        <div
+          className={`${classes.number_div} ${
+            theme === "dark" ? "" : classes.light
+          }`}
+        >
           {data.scaned}/{data.total}
         </div>
         <div className={classes.pie}>

@@ -12,6 +12,7 @@
   transform: scale(-1, 1);
 }
 .btn-light {
+  color: white !important;
   transition: 0.5s all;
   filter: drop-shadow(0px 1px 9px #4CAF50);
 }
@@ -28,6 +29,7 @@
   left: 50%;
   width: max-content;
   background: #FFFFFF;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.35);
   border-radius: 31px;
   padding: 3px 13px;
   line-height: 13px;
@@ -81,4 +83,14 @@
   background-attachment: fixed;
   min-height: 600px;
   padding: 50px 0;
+}
+.slider {
+  width: 100%;
+  max-width: 800px;
+}
+.light > * > .p-wrapper > * a {
+  color: rgb(0, 0, 237);
+}
+.light > * > .p-wrapper > * span {
+  color: red;
 }

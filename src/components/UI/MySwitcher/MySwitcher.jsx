@@ -4,12 +4,12 @@ import classes from "./MySwitcher.module.css";
 
 function MySwitcher({ active, handleOnChange, children }) {
   const [isChecked, setIsChecked] = useState(active);
-  const { span } = classes;
+  const { span, input } = classes;
   return (
     <div className="d-flex gap-2">
       <div className="form-check form-switch">
         <input
-          className="form-check-input"
+          className={`form-check-input ${input}`}
           type="checkbox"
           checked={isChecked}
           onChange={(e) => {

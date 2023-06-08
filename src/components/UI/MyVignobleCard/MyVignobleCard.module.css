@@ -1,7 +1,7 @@
 .main {
     width: 158px;
     min-height: 245px;
-    color: var(--background-color);
+    color: black;
     border-radius: 21px;
     padding: 13px 10px 10px 10px;
 }
@@ -48,5 +48,5 @@
     height: 21px !important;
     width: 76px !important;
     font-size: 10px !important;
-    color: var(--background-color) !important;
+    color: black !important;
 }
