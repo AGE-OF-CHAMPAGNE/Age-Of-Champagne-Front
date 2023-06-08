@@ -12,6 +12,7 @@ import User from "./pages/User/User";
 import SignUp from "./pages/SignUp/SignUp";
 import UserProvider from "./contexts/user/UserProvider";
 import Settings from "./pages/Settings/Settings";
+import Benefit from "./pages/Benefit/Benefit";
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -47,6 +48,7 @@ function App() {
               path="settings"
               element={<Settings changeTheme={changeTheme} />}
             />
+            <Route path="benefit/:district/:vintage" element={<Benefit />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>
