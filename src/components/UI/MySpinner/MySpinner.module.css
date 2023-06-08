@@ -15,7 +15,7 @@
   top: calc(50% + 35px);
   left: calc(50%);
   transform: translateX(-50%);
-  color: white;
+  color: var(--color);
 }
 .tl, .tr, .br, .bl {
   width: 30px;

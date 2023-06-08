@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classes from "./MyBenefit.module.css";
+import MySlider from "../MySlider/MySlider";
 
 function MyBenefit({
   startDate,
@@ -8,7 +9,7 @@ function MyBenefit({
   recipientName,
   title,
   description,
-  img,
+  imgs,
 }) {
   const startTab = [
     startDate.getDate(),
@@ -45,31 +46,30 @@ function MyBenefit({
       </div>
       <div className={classes.title}>{title}</div>
       <div className={classes.desc}>{description}</div>
-      <img className={classes.img} src={img} alt="vignoble" />
+      {imgs ? <MySlider name={description} imgs={imgs} /> : ""}
     </div>
   );
 }
 
 MyBenefit.defaultProps = {
-  startDate: new Date("2022-10-22"),
-  endDate: new Date("2023-10-22"),
-  recipientName: "Nom du Vignerons",
-  title:
-    "Offre spéciale pour les gourmets: dégustation de vins et d'amuse-gueules exclusifs",
-  description:
-    "Nous voulons que nos clients fidèles se sentent spéciaux, c'est pourquoi nous proposons de participer à notre programme de club. En tant que membre du club, vous bénéficierez de réductions exclusives sur nos vins, ainsi que d'invitations à des événements spéciaux.\n" +
-    "\n" +
-    "Nous voulons que nos clients fidèles se sentent spéciaux, c'est pourquoi nous proposons de participer à notre programme de club. En tant que membre du club, vous bénéficierez de réductions exclusives sur nos vins, ainsi que d'invitations à des événements spéciaux.",
-  img: "src/assets/img/defaultBenefit.png",
+  startDate: new Date(),
+  endDate: new Date(),
+  imgs: null,
 };
 
 MyBenefit.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
-  recipientName: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  img: PropTypes.string,
+  recipientName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imgs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      src: PropTypes.string,
+      alt: PropTypes.string,
+    })
+  ),
 };
 
 export default MyBenefit;

@@ -9,7 +9,7 @@
     border-radius: 50%;
     height: 16px;
     width: 16px;
-    background-color: white;
+    background-color: var(--light-color);
 }
 
 .help {
@@ -23,7 +23,7 @@
     z-index: 1;
     transition: 0.5s all;
     position: absolute;
-    background: #000000;
+    background: var(--light-color);
     border-radius: 4px;
     font-size: 12px;
     padding: 4px 6px;
@@ -43,7 +43,7 @@
     height: 0;
     border-style: solid;
     border-width: 0 30px 15px 30px;
-    border-color: transparent transparent #000000 transparent;
+    border-color: transparent transparent var(--light-color) transparent;
     rotate: 22deg;
     left: -15px;
     z-index: -1;

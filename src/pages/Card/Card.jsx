@@ -116,7 +116,6 @@ function Card() {
   }, [vintage]);
 
   useEffect(() => {
-    district.replace("%20", " ");
     getDistrictByName(district).then(({ color_code: colorCode }) => {
       setColor(colorCode);
     });
@@ -195,7 +194,11 @@ function Card() {
           to={prevCard}
           color={color}
         />
-        <MyButtonLink color={color} className={btn} to="/">
+        <MyButtonLink
+          color={color}
+          className={btn}
+          to={`/benefit/${district}/${vintage}`}
+        >
           En Savoir +
         </MyButtonLink>
         <MyNextButton

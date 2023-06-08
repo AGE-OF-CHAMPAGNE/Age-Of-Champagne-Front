@@ -101,7 +101,7 @@ function User() {
               <p className={p}>
                 {user.firstname}{" "}
                 <span className={lastname}>{user.lastname}</span>
-                {user.vintages ? (
+                {user.Vintages ? (
                   <img
                     className={member}
                     draggable="false"
