@@ -1,10 +1,12 @@
 .button {
   cursor: pointer;
   position: absolute;
+  left: 0;
   border: 0;
-  height: auto;
-  width: auto;
+  height: 30px;
+  width: 30px;
   opacity: 0.5;
+  border-radius: 50%;
 }
 .button:hover {
   opacity: 1;

@@ -14,14 +14,15 @@ import { getRecipientById } from "../../services/api/recipient";
 import { getBenefitDateByBenefitId } from "../../services/api/user";
 import MyVisitList from "../../components/MyVisitList/MyVisitList";
 import MySpinner from "../../components/UI/MySpinner/MySpinner";
+import ThemeContext from "../../contexts/theme";
 
 function User() {
   const { title, wrapper, p, section, img, lastname, member, visitWrapper } =
     classes;
-  const imgSettings = {
-    src: "/src/assets/img/icons/mdi_gear.png",
+  const [imgSettings, setImgSettings] = useState({
+    src: "/src/assets/img/icons/gear/light/mdi_gear.png",
     alt: "configuration",
-  };
+  });
   const [benefits, setBenefits] = useState(null);
   const [graphicData, setGraphicData] = useState({
     scaned: 0,
@@ -29,9 +30,26 @@ function User() {
   });
 
   const user = useContext(UserContext);
+  const theme = useContext(ThemeContext);
+
+  useEffect(() => {
+    setImgSettings({
+      src:
+        theme === "dark"
+          ? "/src/assets/img/icons/gear/light/mdi_gear.png"
+          : "/src/assets/img/icons/gear/dark/mdi_gear.png",
+      alt: "configuration",
+    });
+  }, [theme]);
 
   useEffect(() => {
     if (user) {
+      const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+      );
+      const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+      );
       setBenefits(undefined);
       const fetchBenefits = async () => {
         const response = await Promise.all(
@@ -89,13 +107,20 @@ function User() {
               <p className={p}>
                 {user.firstname}{" "}
                 <span className={lastname}>{user.lastname}</span>
-                {user.vintages ? (
-                  <img
-                    className={member}
-                    draggable="false"
-                    src="/src/assets/img/icons/member/member.png"
-                    alt="membre de AOC"
-                  />
+                {user.Vintages.length > 0 ? (
+                  <button
+                    type="button"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    data-bs-title="Vous êtes membre d'Old Hen Games"
+                  >
+                    <img
+                      className={member}
+                      draggable="false"
+                      src="/src/assets/img/icons/member/member.png"
+                      alt="membre de AOC"
+                    />
+                  </button>
                 ) : (
                   ""
                 )}

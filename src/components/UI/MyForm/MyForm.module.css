@@ -24,6 +24,7 @@
   opacity: 0.5;
 }
 .button {
+  transition: 0.2s background-color;
   padding: 13px 31px;
   border: 1px solid #4CAF50;
   border-radius: 4px;
@@ -50,4 +51,12 @@
   text-align: center;
   display: inline-block;
   width: 292px;
+}
+.lightInput {
+  background: #ebebeb;
+  color: rgb(0, 0, 0);
+}
+
+.lightLabel {
+  color: rgba(0, 0, 0, 0.7);
 }

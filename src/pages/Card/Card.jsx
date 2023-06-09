@@ -46,6 +46,7 @@ function Card() {
   const [grapeList, setGrapeList] = useState(null);
   const [prevCard, setPrevCard] = useState(null);
   const [nextCard, setNextCard] = useState(null);
+  const [coords, setCoords] = useState(null);
 
   useEffect(() => {
     if (vintageId) {
@@ -67,15 +68,27 @@ function Card() {
 
   useEffect(() => {
     getVintageByName(vintage).then((response) => {
+      setCoords({
+        lat: response.latitude,
+        lng: response.longitude,
+      });
       setVintageId(response.id);
       setSpList([
         {
           title: "Superficie (ha)",
           number: response.size,
-          color: `${color}1D`,
+          color: `rgb(0, 0, 0, 0.2)`,
         },
-        { title: "Longitude", number: response.longitude, color: `${color}1D` },
-        { title: "Latitude", number: response.latitude, color: `${color}1D` },
+        {
+          title: "Longitude",
+          number: response.longitude,
+          color: `rgb(0, 0, 0, 0.2)`,
+        },
+        {
+          title: "Latitude",
+          number: response.latitude,
+          color: `rgb(0, 0, 0, 0.2)`,
+        },
       ]);
       setGrapeList([
         {
@@ -93,7 +106,7 @@ function Card() {
         {
           title: "Pinot Noir",
           imgPath: "/src/assets/img/icons/blackGrape.png",
-          color: "255, 2555,255",
+          color: "115, 115, 215",
           number: response.pinot_noir,
         },
       ]);
@@ -103,7 +116,6 @@ function Card() {
   }, [vintage]);
 
   useEffect(() => {
-    district.replace("%20", " ");
     getDistrictByName(district).then(({ color_code: colorCode }) => {
       setColor(colorCode);
     });
@@ -138,7 +150,14 @@ function Card() {
           <span className={vintageName}>{vintage}</span>
           <span className={districtName}>{district}</span>
         </div>
-        <MyButton color="rgba(255, 255, 255, 0.2)" className={locationBtn}>
+        <MyButton
+          onClick={() => {
+            const url = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
+            window.open(url, "_blank");
+          }}
+          color="rgba(0, 0, 0, 0.2)"
+          className={locationBtn}
+        >
           Emplacement
         </MyButton>
       </section>
@@ -167,7 +186,7 @@ function Card() {
         <span className={subtitle}>Répartition De Cépage</span>
         {grapeList ? <MyGrapesVarietiesList list={grapeList} /> : ""}
       </section>
-      <section className="pt-3 pb-3">
+      <section className="pt-3 pb-3 z-3">
         <MyNextButton
           className={`${prev} ${prevCard ? "" : disabled}`}
           disabled={!prevCard}
@@ -175,7 +194,11 @@ function Card() {
           to={prevCard}
           color={color}
         />
-        <MyButtonLink color={color} className={btn} to="/">
+        <MyButtonLink
+          color={color}
+          className={btn}
+          to={`/benefit/${district}/${vintage}`}
+        >
           En Savoir +
         </MyButtonLink>
         <MyNextButton

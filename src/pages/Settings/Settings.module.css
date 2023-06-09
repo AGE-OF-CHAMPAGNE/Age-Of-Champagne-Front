@@ -1,0 +1,40 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vh;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  justify-content: space-between;
+}
+.disconnectBtn {
+  background-color: transparent !important;
+  color: var(--red-color);
+  border: 1px solid var(--red-color);
+}
+
+.disconnectBtn:hover {
+  background-color: var(--red-color) !important;
+  color: white;
+  border: 1px solid var(--red-color);
+}
+
+.form {
+  flex-direction: row;
+  align-items: center;
+  min-width: 200px;
+}
+.nouser {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

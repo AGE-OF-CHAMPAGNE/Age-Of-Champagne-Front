@@ -1,14 +1,15 @@
 .MyPopUp {
-  transition: 0.7s all ease;
+  z-index: 10;
+  transition: 0.7s transform ease, 0.2s background-color;
   transform: translateY(100%);
-  bottom: 0;
+  bottom: 44px;
   left: 0;
   position: fixed;
   overflow: hidden;
   width: 100%;
   display: flex;
   justify-content: center;
-  background: var(--black-color);
+  background-color: var(--black-color);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 4px 4px 0px 0px;
   min-height: 241px;

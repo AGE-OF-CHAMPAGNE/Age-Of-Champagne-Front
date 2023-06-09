@@ -43,7 +43,9 @@
     height: 100%;
     width: 100%;
 }
-
+.light {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 .wrapper {
     width: max-content;
     position: relative;
@@ -54,6 +56,11 @@
 }
 
 .img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     width: 273px;
     position: absolute;
     rotate: -20deg;

@@ -253,17 +253,7 @@ function MySpinningCard({ mycard, color }) {
           setValue(90);
         }}
         aria-hidden="true"
-      >
-        {window.DeviceOrientationEvent ? (
-          <div className={notificationError}>
-            {" "}
-            l&apos;orientation de votre appareil n&apos;est pas prise en charge
-            !{" "}
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
+      />
     </div>
   );
 }

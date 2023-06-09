@@ -3,13 +3,16 @@
   position: relative;
 }
 .circle {
+  width: 53px;
   filter: grayscale(0); 
   animation: circle 5s linear infinite;
   position: absolute;
   top: calc(50% - 53px);
   left: calc(50% - 26px);
 }
-
+.subtract {
+  width: 133px;
+}
 @keyframes circle {
   0% {
     transform: rotate(0deg);

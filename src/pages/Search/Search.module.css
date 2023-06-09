@@ -1,0 +1,19 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+.wrapper {
+  width: 100%;
+}
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+@media(min-width: 768px) {
+  .wrapper {
+    width: 768px;
+  }
+}

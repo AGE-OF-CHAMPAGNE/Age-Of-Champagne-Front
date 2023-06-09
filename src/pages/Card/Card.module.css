@@ -5,7 +5,7 @@
 .name-wrapper {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--color);
 }
 .vintage-name {
   font-size: 20px;
@@ -13,16 +13,17 @@
 }
 .district-name {
   font-size: 16px;
-  color: white;
+  color: var(--color);
   opacity: 0.8;
 }
 .location-btn {
+  transition: 0.2s background-color;
   padding: 5px 10px;
   text-transform: capitalize;
-  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 .location-btn:hover {
+  color: #FFFFFF;
   background: rgb(0, 0, 0) !important;
 }
 .line {
@@ -32,7 +33,7 @@
   background-color:rgba(255, 255, 255, 0.5);
 }
 .line{
-  background-color:rgba(255, 255, 255, 1);
+  background-color:var(--color);
 }
 .class-wrapper {
   display: flex;
@@ -42,16 +43,18 @@
 }
 .classification {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color);
+  opacity: 0.5;
 }
 .classification.active {
-  color: rgba(255, 255, 255, 1);
+  color: var(--color);
+  opacity: 1;
 }
 .subtitle {
   display: inline-block;
   font-size: 16px;
   margin-bottom: 5px;
-  color: #FFFFFF;
+  color: var(--color);
 }
 .btn {
   color: black;

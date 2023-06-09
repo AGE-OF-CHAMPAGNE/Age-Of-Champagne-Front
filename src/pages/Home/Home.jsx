@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Icon } from "@iconify/react";
 import MyLogo from "../../components/UI/MyLogo/MyLogo";
 import classes from "./Home.module.css";
@@ -9,6 +9,7 @@ import MyInstruction from "../../components/UI/MyInstruction/MyInstruction";
 import MyMap from "../../components/UI/MyMap/MyMap";
 import MyVignobleCardList from "../../components/MyVignobleCardList/MyVignobleCardList";
 import MySlider from "../../components/UI/MySlider/MySlider";
+import ThemeContext from "../../contexts/theme/index";
 
 function Home() {
   const {
@@ -20,11 +21,15 @@ function Home() {
     "btn-light": btnLight,
     "p-wrapper": pWrapper,
     "rules-section": rulesSection,
+    light,
+    slider,
   } = classes;
 
+  const theme = useContext(ThemeContext);
+
   return (
-    <>
-      <section className="container">
+    <div className={`container pt-3 ${theme === "dark" ? "" : light}`}>
+      <section>
         <MyLogo className={logo} />
         <MyTitle>Bienvenue</MyTitle>
         <p className={text}>
@@ -43,27 +48,30 @@ function Home() {
             S&apos;Inscrire
           </MyButtonLink>
         </div>
-        <MySlider
-          name="homepage"
-          imgs={[
-            { id: 0, src: "/src/assets/img/slider/AoC_-30.jpg", alt: "" },
-            { id: 1, src: "/src/assets/img/slider/AoC_-31.jpg", alt: "" },
-            { id: 2, src: "/src/assets/img/slider/AoC_-32.jpg", alt: "" },
-            { id: 3, src: "/src/assets/img/slider/AoC_-33.jpg", alt: "" },
-            { id: 4, src: "/src/assets/img/slider/AoC_-34.jpg", alt: "" },
-            { id: 5, src: "/src/assets/img/slider/AoC_-36.jpg", alt: "" },
-            { id: 6, src: "/src/assets/img/slider/AoC_-37.jpg", alt: "" },
-            { id: 7, src: "/src/assets/img/slider/AoC_-38.jpg", alt: "" },
-            { id: 8, src: "/src/assets/img/slider/AoC_-39.jpg", alt: "" },
-            { id: 9, src: "/src/assets/img/slider/AoC_-41.jpg", alt: "" },
-            { id: 10, src: "/src/assets/img/slider/AoC_-42.jpg", alt: "" },
-            { id: 11, src: "/src/assets/img/slider/AoC_-43.jpg", alt: "" },
-            { id: 12, src: "/src/assets/img/slider/AoC_-44.jpg", alt: "" },
-          ]}
-        />
+        <div className="d-flex justify-content-center">
+          <MySlider
+            className={slider}
+            name="homepage"
+            imgs={[
+              { id: 0, src: "/src/assets/img/slider/AoC_-30.jpg", alt: "" },
+              { id: 1, src: "/src/assets/img/slider/AoC_-31.jpg", alt: "" },
+              { id: 2, src: "/src/assets/img/slider/AoC_-32.jpg", alt: "" },
+              { id: 3, src: "/src/assets/img/slider/AoC_-33.jpg", alt: "" },
+              { id: 4, src: "/src/assets/img/slider/AoC_-34.jpg", alt: "" },
+              { id: 5, src: "/src/assets/img/slider/AoC_-36.jpg", alt: "" },
+              { id: 6, src: "/src/assets/img/slider/AoC_-37.jpg", alt: "" },
+              { id: 7, src: "/src/assets/img/slider/AoC_-38.jpg", alt: "" },
+              { id: 8, src: "/src/assets/img/slider/AoC_-39.jpg", alt: "" },
+              { id: 9, src: "/src/assets/img/slider/AoC_-41.jpg", alt: "" },
+              { id: 10, src: "/src/assets/img/slider/AoC_-42.jpg", alt: "" },
+              { id: 11, src: "/src/assets/img/slider/AoC_-43.jpg", alt: "" },
+              { id: 12, src: "/src/assets/img/slider/AoC_-44.jpg", alt: "" },
+            ]}
+          />
+        </div>
       </section>
 
-      <section className="container">
+      <section>
         <MyTitle>Fonctionnement</MyTitle>
         <MyInstruction
           title="Commencez Le Jeu"
@@ -106,7 +114,7 @@ function Home() {
         />
       </section>
 
-      <section className="container">
+      <section>
         <MyTitle>Qu’est-ce que Age Of Champagne?</MyTitle>
         <div className={pWrapper}>
           <img src="src/assets/img/icons/image.png" alt="aoc" />
@@ -132,7 +140,7 @@ function Home() {
         </div>
       </section>
 
-      <section className={`container ${rulesSection}`}>
+      <section className={rulesSection}>
         <MyTitle>Règles du jeu</MyTitle>
         <div className="d-flex justify-content-center align-items-center gap-3">
           <img src="src/assets/img/icons/3D.png" alt="fille" />
@@ -148,7 +156,7 @@ function Home() {
         </div>
       </section>
 
-      <section className={`container ${classes.topthreeBg}`}>
+      <section className={classes.topthreeBg}>
         <h1 className="display-2 text-white text-center">TOP 3 VIGNOBLES</h1>
         <MyVignobleCardList
           cards={[
@@ -168,10 +176,10 @@ function Home() {
         />
       </section>
 
-      <section className="container">
+      <section>
         <MyMap />
       </section>
-    </>
+    </div>
   );
 }
 

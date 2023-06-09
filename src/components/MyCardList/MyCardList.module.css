@@ -6,14 +6,17 @@
   overflow: hidden;
 }
 .district-name {
+  color: var(--color);
   font-size: 24px;
   align-self: center;
   margin: 0;
   width: max-content;
 }
 .vintage-name {
+  color: var(--color);
   font-size: 20px;
 }
+
 .mycardlist {
   display: flex;
   justify-content: center;
@@ -93,6 +96,9 @@
 /* light theme */
 .light > .square {
   background: #dadada;
+}
+.dark > .square {
+  background-color: #1A1A1A;
 }
 .light > * .btnNext,.light > * .btnPrev{
   color: rgb(0, 0, 0);

@@ -60,9 +60,13 @@
 
 /* light theme */
 
-.step__description.light {
+.light > * > .step__description {
     transition: 0.5s all;
     color: black;
-    background: transparent;
-    box-shadow: none;
+    background: rgb(255, 255, 255);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.35);
+}
+.light > * > .step__title {
+    color: white;
+    font-weight: bold;
 }

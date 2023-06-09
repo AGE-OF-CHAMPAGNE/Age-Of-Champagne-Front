@@ -17,6 +17,7 @@ function MyCardList({ className, list, color, nameType }) {
     "district-name": districtName,
     "vintage-name": vintageName,
     info2,
+    dark,
   } = classes;
   const theme = useContext(ThemeProvider);
   const documentRef = useRef(document);
@@ -94,7 +95,7 @@ function MyCardList({ className, list, color, nameType }) {
 
   useEffect(() => {
     setItems(documentRef.current.getElementsByClassName(item));
-  }, []);
+  }, [list]);
 
   useEffect(() => {
     setActive(items ? Math.round(items.length / 2) - 1 : 0);
@@ -131,18 +132,34 @@ function MyCardList({ className, list, color, nameType }) {
 
   return (
     <div
-      className={`${className} ${mycardlist} ${theme === "white" ? light : ""}`}
+      className={`${className} ${mycardlist} ${
+        theme === "dark" && !color ? dark : light
+      }`}
     >
       <div className={`${nameType === 1 ? info : info2}`}>
-        <p className={districtName}>{district}</p>
-        <p className={vintageName}>{vintage}</p>
+        <p
+          className={districtName}
+          style={{
+            color: theme === "dark" || nameType === 1 ? "white" : "black",
+          }}
+        >
+          {district}
+        </p>
+        <p
+          className={vintageName}
+          style={{
+            color: theme === "dark" || nameType === 1 ? "white" : "black",
+          }}
+        >
+          {vintage}
+        </p>
       </div>
 
       <div
         tabIndex="0"
         role="button"
         className={`${square} ${slider}`}
-        style={{ background: color }}
+        style={color ? { background: color } : {}}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
@@ -191,7 +208,7 @@ function MyCardList({ className, list, color, nameType }) {
 }
 MyCardList.defaultProps = {
   className: "",
-  color: "#1A1A1A",
+  color: "",
   nameType: 1,
 };
 

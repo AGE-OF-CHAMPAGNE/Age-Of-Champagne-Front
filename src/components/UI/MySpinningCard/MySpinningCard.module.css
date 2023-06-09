@@ -52,7 +52,7 @@
 .trajectory {
   position: inherit;
   box-sizing: border-box;
-  border: 1px dashed #FFFFFF;
+  border: 1px dashed var(--color);
   border-radius: 50%;
   width: 324px;
   height: 80px;
