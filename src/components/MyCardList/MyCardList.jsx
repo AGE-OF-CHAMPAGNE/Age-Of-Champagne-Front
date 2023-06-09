@@ -95,7 +95,7 @@ function MyCardList({ className, list, color, nameType }) {
 
   useEffect(() => {
     setItems(documentRef.current.getElementsByClassName(item));
-  }, []);
+  }, [list]);
 
   useEffect(() => {
     setActive(items ? Math.round(items.length / 2) - 1 : 0);

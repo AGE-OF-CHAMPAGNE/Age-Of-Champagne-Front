@@ -44,6 +44,12 @@ function User() {
 
   useEffect(() => {
     if (user) {
+      const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+      );
+      const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+      );
       setBenefits(undefined);
       const fetchBenefits = async () => {
         const response = await Promise.all(
@@ -101,13 +107,20 @@ function User() {
               <p className={p}>
                 {user.firstname}{" "}
                 <span className={lastname}>{user.lastname}</span>
-                {user.Vintages ? (
-                  <img
-                    className={member}
-                    draggable="false"
-                    src="/src/assets/img/icons/member/member.png"
-                    alt="membre de AOC"
-                  />
+                {user.Vintages.length > 0 ? (
+                  <button
+                    type="button"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    data-bs-title="Vous êtes membre d'Old Hen Games"
+                  >
+                    <img
+                      className={member}
+                      draggable="false"
+                      src="/src/assets/img/icons/member/member.png"
+                      alt="membre de AOC"
+                    />
+                  </button>
                 ) : (
                   ""
                 )}

@@ -18,7 +18,7 @@ function ThemeProvider({ value, children }) {
       root.current.style.setProperty("--background-color", "#252525");
       root.current.style.setProperty("--red-color", "#FF3838");
       root.current.style.setProperty("--black-color", "#1D1D1D");
-      root.current.style.setProperty("--light-color", "#FABD62");
+      root.current.style.setProperty("--light-color", "#4A4F47");
     }
   }, [value]);
   return (

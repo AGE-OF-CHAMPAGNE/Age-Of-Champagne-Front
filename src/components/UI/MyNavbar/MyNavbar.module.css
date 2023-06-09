@@ -1,4 +1,5 @@
 .navbar {
+  transition: 0.2s background-color;
   position: fixed;
   z-index: 999;
   bottom: 0;

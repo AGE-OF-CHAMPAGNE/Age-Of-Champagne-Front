@@ -13,9 +13,13 @@ import SignUp from "./pages/SignUp/SignUp";
 import UserProvider from "./contexts/user/UserProvider";
 import Settings from "./pages/Settings/Settings";
 import Benefit from "./pages/Benefit/Benefit";
+import DukProvider from "./contexts/duk/DukProvider";
+import { areDukShown } from "./services/api/didyouknows";
+import Search from "./pages/Search/Search";
 
 function App() {
   const [theme, setTheme] = useState("dark");
+  const [duk, setDuk] = useState(!!areDukShown());
 
   const changeTheme = () => {
     if (theme === "dark") {
@@ -27,6 +31,9 @@ function App() {
     }
   };
   useEffect(() => {
+    if (!localStorage.getItem("duk")) {
+      localStorage.setItem("duk", JSON.stringify([]));
+    }
     const data = localStorage.getItem("theme");
     if (data) {
       setTheme(data);
@@ -35,24 +42,27 @@ function App() {
 
   return (
     <UserProvider>
-      <ThemeProvider value={theme}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="cards/:district/:vintage" element={<Card />} />
-            <Route path="qrcode" element={<Scanner />} />
-            <Route path="cards" element={<Cards />} />
-            <Route path="user" element={<User />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route
-              path="settings"
-              element={<Settings changeTheme={changeTheme} />}
-            />
-            <Route path="benefit/:district/:vintage" element={<Benefit />} />
-            <Route path="*" element={<Error />} />
-          </Route>
-        </Routes>
-      </ThemeProvider>
+      <DukProvider value={{ duk, setDuk }}>
+        <ThemeProvider value={theme}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="cards/:district/:vintage" element={<Card />} />
+              <Route path="qrcode" element={<Scanner />} />
+              <Route path="cards" element={<Cards />} />
+              <Route path="user" element={<User />} />
+              <Route path="signup" element={<SignUp />} />
+              <Route
+                path="settings"
+                element={<Settings changeTheme={changeTheme} />}
+              />
+              <Route path="benefit/:district/:vintage" element={<Benefit />} />
+              <Route path="search" element={<Search />} />
+              <Route path="*" element={<Error />} />
+            </Route>
+          </Routes>
+        </ThemeProvider>
+      </DukProvider>
     </UserProvider>
   );
 }

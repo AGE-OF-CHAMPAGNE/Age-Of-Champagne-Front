@@ -9,10 +9,12 @@ import MyForm from "../../components/UI/MyForm/MyForm";
 import { emailExists, loginUrl, logoutUrl } from "../../services/api/user";
 import UserContext from "../../contexts/user";
 import MyButtonLink from "../../components/UI/MyButtonLink/MyButtonLink";
+import DukContext from "../../contexts/duk/index";
 
 function Settings({ changeTheme }) {
   const { title, wrapper, disconnectBtn, container, form, nouser } = classes;
   const theme = useContext(ThemeContext);
+  const { duk, setDuk } = useContext(DukContext);
   const [error, setError] = useState({
     email: "",
     password: "",
@@ -55,13 +57,13 @@ function Settings({ changeTheme }) {
             <MySwitcher active={theme === "white"} handleOnChange={changeTheme}>
               Theme claire
             </MySwitcher>
-            <MySwitcher active={theme === "white"}>
+            <MySwitcher active={duk} handleOnChange={() => setDuk(!duk)}>
               Je veux voir &quot;Le Saviez Vous&quot;
             </MySwitcher>
 
-            <MySwitcher active={theme === "white"}>
+            {/* <MySwitcher active={theme === "white"}>
               Recevoir des alertes par email
-            </MySwitcher>
+            </MySwitcher> */}
           </div>
         ) : (
           ""
@@ -70,7 +72,7 @@ function Settings({ changeTheme }) {
           ""
         ) : (
           <>
-            <h2 className="text-white">Vous n&apos;êtes pas connecté</h2>
+            <h2>Vous n&apos;êtes pas connecté</h2>
             <MyButtonLink to={loginUrl()} className="text-black">
               Se Connecter
             </MyButtonLink>

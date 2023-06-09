@@ -153,3 +153,8 @@ export async function getVintageNeighboursById(id) {
   }
   return null;
 }
+
+export async function searchVintagesByString(string) {
+  const allVintages = await getAllVintages();
+  return allVintages.filter((vintage) => vintage.name.includes(string));
+}
