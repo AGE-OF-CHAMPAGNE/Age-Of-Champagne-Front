@@ -5,7 +5,7 @@ import ThemeContext from "../../../contexts/theme";
 
 function MyNavbar() {
   const { navbar, links, item, lightNavbar } = classes;
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <nav className={`${navbar} ${theme === "dark" ? "" : lightNavbar}`}>

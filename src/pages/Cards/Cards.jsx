@@ -129,8 +129,13 @@ function Cards() {
 
       <section className="w-100 d-flex justify-content-center">
         {list && activeBtn === 0 ? <MyCardList nameType={2} list={list} /> : ""}
-        {user && activeBtn === 1 ? (
+        {user && activeBtn === 1 && userList && userList.length > 0 ? (
           <MyCardList nameType={2} list={userList} />
+        ) : (
+          ""
+        )}
+        {activeBtn === 1 && userList && userList.length === 0 ? (
+          <h2>Vous n&apos;avez pas des cartes</h2>
         ) : (
           ""
         )}

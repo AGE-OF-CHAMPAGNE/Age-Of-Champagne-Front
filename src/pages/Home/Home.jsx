@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import MyLogo from "../../components/UI/MyLogo/MyLogo";
 import classes from "./Home.module.css";
@@ -10,6 +10,9 @@ import MyMap from "../../components/UI/MyMap/MyMap";
 import MyVignobleCardList from "../../components/MyVignobleCardList/MyVignobleCardList";
 import MySlider from "../../components/UI/MySlider/MySlider";
 import ThemeContext from "../../contexts/theme/index";
+import { getAllRecipients } from "../../services/api/recipient";
+import { COLORS } from "../../constants/constants";
+import MySpinner from "../../components/UI/MySpinner/MySpinner";
 
 function Home() {
   const {
@@ -24,8 +27,44 @@ function Home() {
     light,
     slider,
   } = classes;
+  const [recipients, setRecipients] = useState(null);
+  const [cards, setCards] = useState(null);
+  useEffect(() => {
+    if (recipients) {
+      const indices = [];
+      while (indices.length < 3) {
+        const randomIndex = Math.floor(Math.random() * recipients.length);
+        if (indices.indexOf(randomIndex) === -1) {
+          indices.push(randomIndex);
+        }
+      }
+      const cardsArr = recipients.filter((recipient, index) =>
+        indices.includes(index)
+      );
+      setCards(
+        cardsArr.map((recipient) => ({
+          id: recipient.id,
+          name: recipient.name,
+          description: recipient.description,
+          data: {
+            address: recipient.address,
+            city: recipient.city,
+            postalCode: recipient.postalCode,
+            phoneNumber: recipient.phoneNumber,
+          },
+          pointOfInterest: [],
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        }))
+      );
+    }
+  }, [recipients]);
 
-  const theme = useContext(ThemeContext);
+  useEffect(() => {
+    getAllRecipients().then((response) => {
+      setRecipients(response);
+    });
+  }, []);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className={`container pt-3 ${theme === "dark" ? "" : light}`}>
@@ -144,7 +183,15 @@ function Home() {
         <MyTitle>Règles du jeu</MyTitle>
         <div className="d-flex justify-content-center align-items-center gap-3">
           <img src="src/assets/img/icons/3D.png" alt="fille" />
-          <MyButton className="text-black">
+          <MyButton
+            onClick={() =>
+              window.open(
+                "https://7e41620a-2af0-47f9-b9f2-213cb9fe7b10.filesusr.com/ugd/251f3d_47913b3e56954cec8cb3fe6abf7e59f6.pdf",
+                "_blank"
+              )
+            }
+            className="text-black"
+          >
             TELECHARGER{" "}
             <Icon icon="ic:baseline-download" color="black" width="22" />
           </MyButton>
@@ -157,23 +204,15 @@ function Home() {
       </section>
 
       <section className={classes.topthreeBg}>
-        <h1 className="display-2 text-white text-center">TOP 3 VIGNOBLES</h1>
-        <MyVignobleCardList
-          cards={[
-            {
-              id: 0,
-              color: "#F8E977",
-            },
-            {
-              id: 1,
-              color: "#F8E977",
-            },
-            {
-              id: 2,
-              color: "#F8E977",
-            },
-          ]}
-        />
+        <h1 className="display-2 text-white text-center">NOS PARTENAIRES</h1>
+        {cards ? (
+          <MyVignobleCardList cards={cards} />
+        ) : (
+          <div style={{ height: "354px" }}>
+            <MySpinner active />
+          </div>
+        )}
+        <MyButtonLink to="/recipients">Voir tout</MyButtonLink>
       </section>
 
       <section>

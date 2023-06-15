@@ -74,7 +74,7 @@ function Benefit() {
         ) : (
           ""
         )}
-        {benefits.length === 0 ? (
+        {benefits && benefits.length === 0 ? (
           <div className="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
             Il n&apos;y a aucun avantage, désolé
           </div>

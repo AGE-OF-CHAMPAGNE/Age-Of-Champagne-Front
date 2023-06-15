@@ -5,7 +5,7 @@ import MyButton from "../MyButton/MyButton";
 import ThemeProvider from "../../../contexts/theme";
 
 function MyPopUp({ title, description, img, active, onClickReset, onClickOk }) {
-  const theme = useContext(ThemeProvider);
+  const { theme } = useContext(ThemeProvider);
 
   return (
     <div

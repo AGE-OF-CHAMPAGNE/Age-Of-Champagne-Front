@@ -6,14 +6,14 @@ function ThemeProvider({ value, children }) {
   const root = useRef(document.documentElement);
 
   useEffect(() => {
-    if (value === "white") {
+    if (value.theme === "white") {
       root.current.style.setProperty("--color", "black");
       root.current.style.setProperty("--background-color", "#f9f9f9");
       root.current.style.setProperty("--red-color", "#9A0A06");
       root.current.style.setProperty("--black-color", "#1D1D1D");
       root.current.style.setProperty("--light-color", "#FABD62");
     }
-    if (value === "dark") {
+    if (value.theme === "dark") {
       root.current.style.setProperty("--color", "white");
       root.current.style.setProperty("--background-color", "#252525");
       root.current.style.setProperty("--red-color", "#FF3838");
@@ -27,12 +27,14 @@ function ThemeProvider({ value, children }) {
 }
 
 ThemeProvider.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.shape({
+    theme: PropTypes.string,
+    changeTheme: PropTypes.func,
+  }).isRequired,
   children: PropTypes.node,
 };
 
 ThemeProvider.defaultProps = {
-  value: "dark",
   children: null,
 };
 

@@ -24,7 +24,7 @@ export async function emailExists(emailToVerify) {
       throw new Error(response.statusText);
     }
 
-    const users = await response.json();
+    const { "hydra:member": users } = await response.json();
     const isEmailExists = users.some(({ email }) => email === emailToVerify);
     return isEmailExists;
   } catch (error) {
@@ -54,10 +54,106 @@ export function logoutUrl() {
 export async function registration(data) {
   const r = await fetch(`${BASE_URL}/users`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   }).then((response) => response);
   return r;
+}
+
+export async function setEmailToAuthorizedUser(user, email) {
+  if (user) {
+    return fetch(`${BASE_URL}/users/${user.id}`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    })
+      .then((response) => response)
+      .catch((error) => {
+        console.log(`Error: ${error}`);
+      });
+  }
+  throw new Error("Unauthorized user");
+}
+
+export async function setFirstnameToAuthorizedUser(user, firstname) {
+  if (user) {
+    return fetch(`${BASE_URL}/users/${user.id}`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+      },
+      body: JSON.stringify({
+        firstname,
+      }),
+    })
+      .then(
+        (response) =>
+          // Обработка ответа от сервера
+          response
+      )
+      .catch((error) => {
+        // Обработка ошибок
+        console.log(`Error: ${error}`);
+      });
+  }
+  throw new Error("Unauthorized user");
+}
+
+export async function setLastnameToAuthorizedUser(user, lastname) {
+  if (user) {
+    return fetch(`${BASE_URL}/users/${user.id}`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+      },
+      body: JSON.stringify({
+        lastname,
+      }),
+    })
+      .then(
+        (response) =>
+          // Обработка ответа от сервера
+          response
+      )
+      .catch((error) => {
+        // Обработка ошибок
+        console.log(`Error: ${error}`);
+      });
+  }
+  throw new Error("Unauthorized user");
+}
+
+export async function setPasswordToAuthorizedUser(user, password) {
+  if (user) {
+    return fetch(`${BASE_URL}/users/${user.id}`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+      },
+      body: JSON.stringify({
+        password,
+      }),
+    })
+      .then(
+        (response) =>
+          // Обработка ответа от сервера
+          response
+      )
+      .catch((error) => {
+        // Обработка ошибок
+        console.log(`Error: ${error}`);
+      });
+  }
+  throw new Error("Unauthorized user");
 }

@@ -1,0 +1,18 @@
+.title {
+  display: flex;
+  align-items: center;
+}
+.nameWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--color);
+}
+.titleName {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.subtitle {
+  font-size: 16px;
+  color: var(--color);
+  opacity: 0.8;
+}

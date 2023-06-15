@@ -30,7 +30,7 @@ function User() {
   });
 
   const user = useContext(UserContext);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     setImgSettings({
@@ -47,7 +47,9 @@ function User() {
       const tooltipTriggerList = document.querySelectorAll(
         '[data-bs-toggle="tooltip"]'
       );
+      // eslint-disable-next-line no-unused-vars
       const tooltipList = [...tooltipTriggerList].map(
+        // eslint-disable-next-line no-undef
         (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
       );
       setBenefits(undefined);

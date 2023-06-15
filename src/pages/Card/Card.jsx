@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MyPageTitle from "../../components/UI/MyPageTitle/MyPageTitle";
 import classes from "./Card.module.css";
 import MyArrow from "../../components/UI/MyArrow/MyArrow";
@@ -47,6 +47,7 @@ function Card() {
   const [prevCard, setPrevCard] = useState(null);
   const [nextCard, setNextCard] = useState(null);
   const [coords, setCoords] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (vintageId) {
@@ -68,6 +69,10 @@ function Card() {
 
   useEffect(() => {
     getVintageByName(vintage).then((response) => {
+      console.log(response);
+      if (!response) {
+        navigate("/error");
+      }
       setCoords({
         lat: response.latitude,
         lng: response.longitude,

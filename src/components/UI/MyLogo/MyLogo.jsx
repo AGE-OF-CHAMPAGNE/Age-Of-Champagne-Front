@@ -5,7 +5,7 @@ import ThemeContext from "../../../contexts/theme/index";
 
 function MyLogo({ className }) {
   const { logo, circle, subtract } = classes;
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <div className={`${logo} ${className}`}>
       {theme === "dark" ? (

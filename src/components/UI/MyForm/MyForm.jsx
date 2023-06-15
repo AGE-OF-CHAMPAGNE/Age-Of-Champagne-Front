@@ -12,7 +12,7 @@ function MyForm({ inputs, onSubmit, btnName, className }) {
     formState: { errors },
   } = useForm();
 
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const [hidden, setHidden] = useState({
     type: "password",

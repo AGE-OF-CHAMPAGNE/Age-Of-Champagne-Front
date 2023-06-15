@@ -19,7 +19,7 @@ function MyCardList({ className, list, color, nameType }) {
     info2,
     dark,
   } = classes;
-  const theme = useContext(ThemeProvider);
+  const { theme } = useContext(ThemeProvider);
   const documentRef = useRef(document);
   const [items, setItems] = useState(null);
   const [active, setActive] = useState(0);
@@ -135,6 +135,7 @@ function MyCardList({ className, list, color, nameType }) {
       className={`${className} ${mycardlist} ${
         theme === "dark" && !color ? dark : light
       }`}
+      style={{ position: nameType === 1 ? "" : "relative" }}
     >
       <div className={`${nameType === 1 ? info : info2}`}>
         <p

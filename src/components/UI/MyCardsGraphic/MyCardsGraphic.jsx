@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import PropTypes from "prop-types";
 import classes from "./MyCardsGraphic.module.css";
@@ -6,7 +6,7 @@ import ThemeContext from "../../../contexts/theme";
 
 function MyCardsGraphic({ data, className }) {
   const COLORS = ["#FABD62", "#2171AD"];
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <div className={`${classes.main} ${className}`}>
       <div className={classes.map_legend}>

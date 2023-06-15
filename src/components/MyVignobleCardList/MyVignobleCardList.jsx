@@ -6,14 +6,13 @@ import MyVignobleCard from "../UI/MyVignobleCard/MyVignobleCard";
 function MyVignobleCardList({ cards }) {
   return (
     <div className="d-flex flex-wrap justify-content-center gap-5">
-      {cards.map(({ id, name, pointOfInterest, description, imgs, color }) => (
+      {cards.map(({ id, data, name, imgs, color }) => (
         <MyVignobleCard
           className={classes.item}
           key={id}
           sliderName={`name-${id}`}
+          data={data}
           name={name}
-          pointOfInterest={pointOfInterest}
-          description={description}
           imgs={imgs}
           color={color}
         />

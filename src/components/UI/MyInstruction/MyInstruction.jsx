@@ -15,7 +15,7 @@ function MyInstruction({ className, img, color, title, description, side }) {
     step__title: stepTitle,
     step__description: stepDescription,
   } = classes;
-  const theme = useContext(ThemeProvider);
+  const { theme } = useContext(ThemeProvider);
 
   return (
     <div

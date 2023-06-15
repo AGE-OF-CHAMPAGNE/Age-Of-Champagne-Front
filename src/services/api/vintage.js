@@ -40,10 +40,46 @@ export function getVintageByName(name) {
         }
       });
       return vintage;
+    });
+}
+
+export function getVintageByUrlFromQrCode(url) {
+  return fetch(`${BASE_URL}/vintages`)
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      }
+      const error = new Error(response.statusText);
+      error.response = response;
+      throw error;
     })
-    .catch((e) => {
-      console.log(`Error: ${e.message}`);
-      console.log(e.response);
+    .then((response) => response.json())
+    .then(({ "hydra:member": vintages }) => {
+      let vintage;
+
+      function convertToLowercase(str) {
+        const words = str.split(/[\s-]+/);
+        let result = "";
+
+        for (let i = 0; i < words.length; i += 1) {
+          const cleanedWord = words[i].replace(/['"`]+/g, "");
+          result += cleanedWord.toLowerCase();
+
+          if (i !== words.length - 1) {
+            result += "-";
+          }
+        }
+
+        return result;
+      }
+
+      vintages.forEach((element) => {
+        const name = convertToLowercase(element.name);
+        if (getIdFromUrl(url) === name) {
+          vintage = element;
+        }
+      });
+      return vintage;
     });
 }
 
@@ -157,4 +193,28 @@ export async function getVintageNeighboursById(id) {
 export async function searchVintagesByString(string) {
   const allVintages = await getAllVintages();
   return allVintages.filter((vintage) => vintage.name.includes(string));
+}
+
+export async function setVintageToAuthorizedUser(user, vintageId) {
+  if (user) {
+    return fetch(`${BASE_URL}/users/${user.id}`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+      },
+      body: JSON.stringify({
+        Vintages: [...user.Vintages, `/api/vintage/${vintageId}`],
+      }),
+    })
+      .then((response) => {
+        // Обработка ответа от сервера
+        console.log(response);
+      })
+      .catch((error) => {
+        // Обработка ошибок
+        console.log(`Error: ${error}`);
+      });
+  }
+  throw new Error("Unauthorized user");
 }

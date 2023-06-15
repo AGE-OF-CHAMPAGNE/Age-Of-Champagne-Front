@@ -14,7 +14,7 @@ MyPageTitle.defaultProps = {
 
 MyPageTitle.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
 };
 
 export default MyPageTitle;

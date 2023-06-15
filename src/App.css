@@ -27,3 +27,7 @@ section {
 .lazy-image.loaded {
   filter: blur(0);
 }
+.loading {
+  width: 100%;
+  min-height: calc(100vh - 44px);
+}

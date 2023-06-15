@@ -1,47 +1,101 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-alert */
 import React, { useState, useContext, useEffect } from "react";
-import PropTypes from "prop-types";
 import classes from "./Settings.module.css";
 import MyArrow from "../../components/UI/MyArrow/MyArrow";
 import MyPageTitle from "../../components/UI/MyPageTitle/MyPageTitle";
 import MySwitcher from "../../components/UI/MySwitcher/MySwitcher";
 import ThemeContext from "../../contexts/theme";
 import MyForm from "../../components/UI/MyForm/MyForm";
-import { emailExists, loginUrl, logoutUrl } from "../../services/api/user";
+import {
+  emailExists,
+  loginUrl,
+  logoutUrl,
+  setEmailToAuthorizedUser,
+  setFirstnameToAuthorizedUser,
+  setLastnameToAuthorizedUser,
+  setPasswordToAuthorizedUser,
+} from "../../services/api/user";
 import UserContext from "../../contexts/user";
 import MyButtonLink from "../../components/UI/MyButtonLink/MyButtonLink";
 import DukContext from "../../contexts/duk/index";
 
-function Settings({ changeTheme }) {
+function Settings() {
   const { title, wrapper, disconnectBtn, container, form, nouser } = classes;
-  const theme = useContext(ThemeContext);
+  const { theme, changeTheme } = useContext(ThemeContext);
   const { duk, setDuk } = useContext(DukContext);
-  const [error, setError] = useState({
+  const [error] = useState({
     email: "",
     password: "",
-    name: "",
+    firstname: "",
+    lastname: "",
   });
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const user = useContext(UserContext);
 
-  const handleEmailSubmit = (data) => {
-    console.log(data);
+  const handleEmailSubmit = async (data) => {
+    if (!(await emailExists(data.email)) && data.email !== user.email) {
+      setEmailToAuthorizedUser(user, data.email).then((response) => {
+        if (response.ok) {
+          alert("Votre ужйшд a bien été modifié");
+        } else {
+          alert("Quelque chose s'est mal passé");
+        }
+      });
+    } else {
+      alert(`${data.email} es déja utilisé`);
+    }
   };
-
-  const handlePseudonymeSubmit = (data) => {
-    console.log(data);
+  const handleLastnameSubmit = (data) => {
+    if (data.lastname !== user.lastname) {
+      setLastnameToAuthorizedUser(user, data.lastname).then((response) => {
+        if (response.ok) {
+          alert("Votre nom a bien été modifié");
+        } else {
+          alert("Quelque chose s'est mal passé");
+        }
+      });
+    } else {
+      alert("Saisissez le nom");
+    }
+  };
+  const handleFirstnameSubmit = (data) => {
+    if (data.firstname !== user.firstname) {
+      setFirstnameToAuthorizedUser(user, data.firstname).then((response) => {
+        if (response.ok) {
+          alert("Votre prénom a bien été modifié");
+        } else {
+          alert("Quelque chose s'est mal passé");
+        }
+      });
+    } else {
+      alert("Saisissez le prénom");
+    }
   };
 
   const handlePasswordSubmit = (data) => {
-    console.log(data);
+    setPasswordToAuthorizedUser(user, data.password).then((response) => {
+      if (response.ok) {
+        alert("Votre mot de pass a bien été modifié");
+      } else {
+        alert("Quelque chose s'est mal passé");
+      }
+    });
   };
 
   useEffect(() => {
     if (user) {
-      const { email: userEmail, firstname: userFirstname } = user;
+      const {
+        email: userEmail,
+        firstname: userFirstname,
+        lastname: userLastname,
+      } = user;
       setEmail(userEmail);
-      setName(userFirstname);
+      setFirstname(userFirstname);
+      setLastname(userLastname);
     }
   }, [user]);
 
@@ -106,19 +160,38 @@ function Settings({ changeTheme }) {
             className={form}
             inputs={[
               {
-                label: "Pseudonyme",
+                label: "Prénom",
                 type: "text",
                 required: true,
                 pattern: /[A-Za-z0-9]+/i,
-                error: error.name,
+                error: error.firstname,
                 name: "firstname",
                 onChange: (e) => {
-                  setName(e.target.value);
+                  setFirstname(e.target.value);
                 },
-                value: name,
+                value: firstname,
               },
             ]}
-            onSubmit={(data) => handlePseudonymeSubmit(data)}
+            onSubmit={(data) => handleFirstnameSubmit(data)}
+          />
+          <MyForm
+            btnName="modifier"
+            className={form}
+            inputs={[
+              {
+                label: "Nom",
+                type: "text",
+                required: true,
+                pattern: /[A-Za-z0-9]+/i,
+                error: error.lastname,
+                name: "lastname",
+                onChange: (e) => {
+                  setLastname(e.target.value);
+                },
+                value: lastname,
+              },
+            ]}
+            onSubmit={(data) => handleLastnameSubmit(data)}
           />
           <MyForm
             btnName="modifier"
@@ -150,9 +223,5 @@ function Settings({ changeTheme }) {
     </div>
   );
 }
-
-Settings.propTypes = {
-  changeTheme: PropTypes.func.isRequired,
-};
 
 export default Settings;
