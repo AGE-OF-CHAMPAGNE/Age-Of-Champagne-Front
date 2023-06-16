@@ -207,10 +207,7 @@ export async function setVintageToAuthorizedUser(user, vintageId) {
         Vintages: [...user.Vintages, `/api/vintage/${vintageId}`],
       }),
     })
-      .then((response) => {
-        // Обработка ответа от сервера
-        console.log(response);
-      })
+      .then((response) => response)
       .catch((error) => {
         // Обработка ошибок
         console.log(`Error: ${error}`);

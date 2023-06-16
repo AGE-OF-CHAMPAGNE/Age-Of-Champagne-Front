@@ -8,6 +8,10 @@ import {
   setReviewed,
 } from "../../services/api/didyouknows";
 import DukContext from "../../contexts/duk";
+import UserContext from "../../contexts/user/index";
+import MyButtonLink from "../UI/MyButtonLink/MyButtonLink";
+import { logoutUrl, loginUrl } from "../../services/api/user";
+import classes from "./Layout.module.css";
 
 function Layout() {
   const [dukId, setDukId] = useState(null);
@@ -16,6 +20,7 @@ function Layout() {
   const [refresh, setRefresh] = useState(0);
   const { duk: dukState } = useContext(DukContext);
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
   useEffect(() => {
     getNotReviewed().then((response) => {
@@ -50,7 +55,45 @@ function Layout() {
 
   return (
     <>
-      <Outlet />
+      <div
+        className="container"
+        style={{
+          position: "fixed",
+          top: "15px",
+          right: "50%",
+          transform: "translateX(50%)",
+          zIndex: 999,
+        }}
+      >
+        <main className="d-flex justify-content-end align-items-center gap-5">
+          {user ? (
+            <>
+              <p>
+                Bonjour {user.firstname} {user.lastname}
+              </p>
+              <MyButtonLink className={classes.disconnectBtn} to={logoutUrl()}>
+                Se Deconnecter
+              </MyButtonLink>
+            </>
+          ) : (
+            <>
+              <p>Bonjour, vous n&apos;êtes pas connecté</p>
+              <div className="d-flex gap-1">
+                <MyButtonLink to="/signup" className="text-black">
+                  S&apos;Inscrire
+                </MyButtonLink>
+                <MyButtonLink to={loginUrl()} className="text-black">
+                  Se Connecter
+                </MyButtonLink>
+              </div>
+            </>
+          )}
+        </main>
+      </div>
+      <div style={{ paddingTop: "100px" }}>
+        <Outlet />
+      </div>
+
       {duk ? (
         <MyPopUp
           title="LE SAVIEZ VOUS ?"

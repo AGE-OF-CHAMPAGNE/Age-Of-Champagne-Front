@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import PropTypes from "prop-types";
 import classes from "./MyVignobleCard.module.css";
 import MyButtonLink from "../MyButtonLink/MyButtonLink";
 import MySlider from "../MySlider/MySlider";
+import { getRecipientByName } from "../../../services/api/recipient";
+import { getVintageById } from "../../../services/api/vintage";
+import getIdFromUrl from "../../../services/transformers/getIdFromUrl";
+import { getDistrictById } from "../../../services/api/district";
 
 function MyVignobleCard({
   className,
@@ -14,11 +18,26 @@ function MyVignobleCard({
   color,
   sliderName,
 }) {
+  const [vintageColor, setVintageColor] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getRecipientByName(name);
+      if (response && response.vintages.length > 0) {
+        const vintageId = getIdFromUrl(response.vintages[0]);
+        const vintage = await getVintageById(vintageId);
+        const district = await getDistrictById(getIdFromUrl(vintage.district));
+        setVintageColor(district.colorCode);
+      }
+    };
+
+    fetchData();
+  }, [name]);
+
   return (
     <div className={classes.card}>
       <div
         className={`${classes.main} ${className}`}
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: vintageColor ? vintageColor : color }}
       >
         <h1 className={classes.name}>{name}</h1>
         <div className={classes.p}>

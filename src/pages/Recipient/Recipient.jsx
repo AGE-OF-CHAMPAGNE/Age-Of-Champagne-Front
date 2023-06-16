@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRecipientByName } from "../../services/api/recipient";
 import MyArrow from "../../components/UI/MyArrow/MyArrow";
@@ -8,12 +8,14 @@ import classes from "./Recipient.module.css";
 import { getBenefitById } from "../../services/api/benefit";
 import MyBenefit from "../../components/UI/MyBenefit/MyBenefit";
 import getIdFromUrl from "../../services/transformers/getIdFromUrl";
+import UserContext from "../../contexts/user";
 
 function Recipient() {
   const { name } = useParams();
-  const { title, nameWrapper, titleName, subtitle } = classes;
+  const { title, nameWrapper, titleName, subtitle, block } = classes;
   const [benefits, setBenefits] = useState(null);
   const [recipient, setRecipient] = useState();
+  const user = useContext(UserContext);
 
   useEffect(() => {
     getRecipientByName(name).then((response) => {
@@ -43,7 +45,7 @@ function Recipient() {
     <div className="container pt-3">
       <section className={title}>
         <MyArrow />
-        <MyPageTitle>Sélectionnez un partenaire</MyPageTitle>
+        <MyPageTitle>{name}</MyPageTitle>
       </section>
       <section className="z-1">
         {recipient ? (
@@ -67,7 +69,7 @@ function Recipient() {
         )}
       </section>
       <section>
-        <MyPageTitle>Les avantages de {name}</MyPageTitle>
+        <MyPageTitle>Les avantages</MyPageTitle>
         {!benefits ? (
           <div style={{ height: "500px" }}>
             <MySpinner active />
@@ -75,7 +77,7 @@ function Recipient() {
         ) : (
           ""
         )}
-        {benefits && benefits.length === 0 ? (
+        {benefits && benefits.length === 0 && user ? (
           <div
             className="d-flex w-100 justify-content-center align-items-center"
             style={{ height: "350px" }}
@@ -86,7 +88,7 @@ function Recipient() {
           ""
         )}
         <div className="d-flex flex-column gap-5 align-items-center pt-3">
-          {benefits && benefits.length > 0
+          {benefits && benefits.length > 0 && user
             ? benefits.map((elem) => (
                 <MyBenefit
                   key={elem.id}
@@ -99,6 +101,13 @@ function Recipient() {
                 />
               ))
             : ""}
+          {!user ? (
+            <div className={block}>
+              Pour voir des avantages il faut être connecté{" "}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </section>
     </div>

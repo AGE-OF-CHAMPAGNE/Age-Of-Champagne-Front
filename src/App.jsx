@@ -16,6 +16,7 @@ import Provider from "./contexts/Provider";
 import MySpinner from "./components/UI/MySpinner/MySpinner";
 import Recipients from "./pages/Recipients/Recipients";
 import Recipient from "./pages/Recipient/Recipient";
+import Questions from "./pages/Questions/Questions";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -69,6 +70,7 @@ function App() {
               <Route path="search" element={<Search />} />
               <Route path="recipients" element={<Recipients />} />
               <Route path="recipients/:name" element={<Recipient />} />
+              <Route path="questions" element={<Questions />} />
               <Route path="*" element={<Error />} />
             </Route>
           </Routes>

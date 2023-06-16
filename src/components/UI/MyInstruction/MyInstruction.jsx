@@ -60,7 +60,7 @@ MyInstruction.propTypes = {
   color: PropTypes.string,
   title: PropTypes.string,
   className: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
 
 export default MyInstruction;

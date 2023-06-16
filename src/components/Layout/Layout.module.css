@@ -1,0 +1,10 @@
+.disconnectBtn {
+  background-color: transparent !important;
+  color: var(--red-color);
+  border: 1px solid var(--red-color);
+}
+.disconnectBtn:hover {
+  background-color: var(--red-color) !important;
+  color: white;
+  border: 1px solid var(--red-color);
+}

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 import MyLogo from "../../components/UI/MyLogo/MyLogo";
 import classes from "./Home.module.css";
 import MyTitle from "../../components/UI/MyTitle/MyTitle";
 import MyButton from "../../components/UI/MyButton/MyButton";
 import MyButtonLink from "../../components/UI/MyButtonLink/MyButtonLink";
 import MyInstruction from "../../components/UI/MyInstruction/MyInstruction";
-import MyMap from "../../components/UI/MyMap/MyMap";
 import MyVignobleCardList from "../../components/MyVignobleCardList/MyVignobleCardList";
 import MySlider from "../../components/UI/MySlider/MySlider";
 import ThemeContext from "../../contexts/theme/index";
@@ -27,6 +27,7 @@ function Home() {
     light,
     slider,
   } = classes;
+  const navigate = useNavigate();
   const [recipients, setRecipients] = useState(null);
   const [cards, setCards] = useState(null);
   useEffect(() => {
@@ -83,9 +84,6 @@ function Home() {
         </p>
         <div className="d-flex justify-content-between align-items-center">
           <img src="src/assets/img/cards/cards.png" alt="cards" />
-          <MyButtonLink to="/signup" className="text-black">
-            S&apos;Inscrire
-          </MyButtonLink>
         </div>
         <div className="d-flex justify-content-center">
           <MySlider
@@ -114,7 +112,7 @@ function Home() {
         <MyTitle>Fonctionnement</MyTitle>
         <MyInstruction
           title="Commencez Le Jeu"
-          description="En achetant le jeu de société Age Of Champagne, vous aurez désormais la possibilité de bénéficier d'avantages exclusifs auprès de nos partenaires en visitant leurs caves à vin."
+          description="En achetant le jeu de société Age Of Champagne, vous aurez désormais la possibilité de bénéficier d'avantages exclusifs auprès de nos partenaires et de découvrir les différents crus présents dans le jeu."
         />
         <div className="d-flex justify-content-start align-items-center column-gap-5">
           <div className={chatContainer}>
@@ -123,14 +121,12 @@ function Home() {
           </div>
           <MyButton
             onClick={() =>
-              window.location.replace(
-                "https://www.espritjeu.com/jeux-de-strategie/aoc-age-of-champagne.html"
-              )
+              window.location.replace("https://www.ageofchampagne.fr/")
             }
             color="#4CAF50"
             className={btnLight}
           >
-            ACHTER
+            ACHETER
             <Icon className="mb-1" icon="icons8:buy" color="white" width="22" />
           </MyButton>
         </div>
@@ -142,13 +138,33 @@ function Home() {
           color="#AC7CCA"
           side="right"
           className={scaled}
-          description="Ensuite, vous avez la possibilité de vous inscrire gratuitement pour collectionner les cartes et bénéficier de réductions auprès de nos vignobles partenaires."
+          description="Ensuite, vous avez la possibilité de vous inscrire gratuitement pour collectionner les cartes et bénéficier de réductions auprès de nos partenaires."
           title="Inscrivez-Vous"
         />
         <MyInstruction
           color="#689900"
           title="Scannez le QR code"
-          description="Pour ajouter une carte à votre collection, scannez le QR code situé au verso de la carte du vignoble."
+          description={
+            <span>
+              Pour ajouter une carte à votre collection, scannez le QR code sur
+              la page de scanneur{" "}
+              <button
+                style={{
+                  backgroundColor: "var(--light-color)",
+                  padding: "3px",
+                  borderRadius: "2px",
+                }}
+                type="button"
+                onClick={() => navigate("/qrcode")}
+              >
+                <img
+                  src="/src/assets/img/icons/mingcute_qrcode-2-fill.png"
+                  alt="icon de la page"
+                />
+              </button>{" "}
+              situé au verso de la carte du vignoble.
+            </span>
+          }
           img={{ src: "src/assets/img/icons/scan.png", alt: "phone" }}
         />
       </section>
@@ -213,10 +229,6 @@ function Home() {
           </div>
         )}
         <MyButtonLink to="/recipients">Voir tout</MyButtonLink>
-      </section>
-
-      <section>
-        <MyMap />
       </section>
     </div>
   );

@@ -109,7 +109,7 @@ function Settings() {
         {user ? (
           <div>
             <MySwitcher active={theme === "white"} handleOnChange={changeTheme}>
-              Theme claire
+              Théme clair
             </MySwitcher>
             <MySwitcher active={duk} handleOnChange={() => setDuk(!duk)}>
               Je veux voir &quot;Le Saviez Vous&quot;

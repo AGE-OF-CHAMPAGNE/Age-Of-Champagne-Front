@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MyArrow from "../../components/UI/MyArrow/MyArrow";
 import MyPageTitle from "../../components/UI/MyPageTitle/MyPageTitle";
@@ -9,12 +9,14 @@ import getIdFromUrl from "../../services/transformers/getIdFromUrl";
 import { getRecipientById } from "../../services/api/recipient";
 import MyBenefit from "../../components/UI/MyBenefit/MyBenefit";
 import MySpinner from "../../components/UI/MySpinner/MySpinner";
+import UserContext from "../../contexts/user";
 
 function Benefit() {
-  const { title, span, spinnerContainer } = classes;
+  const { title, span, spinnerContainer, block } = classes;
   const { district, vintage } = useParams();
   const [vintageId, setVintageId] = useState(null);
   const [benefits, setBenefits] = useState(null);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     getVintageByName(vintage).then((response) => {
@@ -57,7 +59,7 @@ function Benefit() {
         </div>
       </section>
       <section className="d-flex flex-column align-items-center gap-5">
-        {benefits
+        {benefits && user
           ? benefits.map((elem) => (
               <MyBenefit
                 key={elem.id}
@@ -67,16 +69,23 @@ function Benefit() {
               />
             ))
           : ""}
-        {benefits === undefined ? (
+        {benefits === undefined && user ? (
           <div className={spinnerContainer}>
             <MySpinner active />
           </div>
         ) : (
           ""
         )}
-        {benefits && benefits.length === 0 ? (
+        {benefits && benefits.length === 0 && user ? (
           <div className="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
             Il n&apos;y a aucun avantage, désolé
+          </div>
+        ) : (
+          ""
+        )}
+        {!user ? (
+          <div className={block}>
+            Pour voir des avantages il faut être connecté{" "}
           </div>
         ) : (
           ""

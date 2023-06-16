@@ -12,13 +12,13 @@ function MyCardsGraphic({ data, className }) {
       <div className={classes.map_legend}>
         <div className={classes.legend}>
           <div className={classes.box} id={classes.yellow_box} />
-          Cartes déja scannée
+          Cartes déja scannées
         </div>
         <div className={classes.legend}>
           <div className={classes.box} id={classes.blue_box}>
             {" "}
           </div>
-          Cartes non scannée
+          Cartes non scannées
         </div>
       </div>
       <img
@@ -38,8 +38,11 @@ function MyCardsGraphic({ data, className }) {
           <PieChart width={172} height={172}>
             <Pie
               data={[
-                { name: "Cartes déja scannée", value: data.scaned },
-                { name: "Cartes non scannée", value: data.total - data.scaned },
+                { name: "Cartes déja scannées", value: data.scaned },
+                {
+                  name: "Cartes non scannées",
+                  value: data.total - data.scaned,
+                },
               ]}
               innerRadius={55}
               outerRadius={85}
