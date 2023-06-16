@@ -59,3 +59,5 @@ npm install @fortawesome/fontawesome-svg-core \
             @fortawesome/free-solid-svg-icons \
             @fortawesome/react-fontawesome
 ```
+
+Figma link: https://www.figma.com/file/wUEoLv23oYqCLC8jGIhXWZ/AOC?type=design&node-id=0%3A1&t=JbtmAv3fTDorHr8m-1
